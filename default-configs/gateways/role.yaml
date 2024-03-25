@@ -15,8 +15,8 @@ kind: RoleBinding
 metadata:
   name: asm-ingressgateway-sds
   namespace: asm-gateways
-  annotations:
-    configmanagement.gke.io/cluster-selector: selector-prod
+  # annotations:
+  #   configmanagement.gke.io/cluster-selector: selector-prod
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
