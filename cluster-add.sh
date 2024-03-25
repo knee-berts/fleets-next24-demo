@@ -1,3 +1,72 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+
+while getopts p:n:l:c:t:w: flag
+do
+    case "${flag}" in
+        p) PROJECT_ID=${OPTARG};;
+        n) CLUSTER_NAME=${OPTARG};;
+        l) CLUSTER_LOCATION=${OPTARG};;
+        c) CONTROL_PLANE_CIDR=${OPTARG};;
+        t) CLUSTER_TYPE=${OPTARG};;
+        w) APP_DEPLOYMENT_WAVE=${OPTARG};;
+    esac
+done
+
+echo "::Variable set::"
+echo "PROJECT_ID: ${PROJECT_ID}"
+echo "CLUSTER_NAME: ${CLUSTER_NAME}"
+echo "CLUSTER_LOCATION: ${CLUSTER_LOCATION}"
+echo "CONTROL_PLANE_CIDR:${CONTROL_PLANE_CIDR}"
+echo "CONTROL_TYPE:${CLUSTER_TYPE}"
+echo "APP_DEPLOYMENT_WAVE:${APP_DEPLOYMENT_WAVE}"
+
+REGION=${CLUSTER_LOCATION:0:-2}
+PROJECT_NUMBER=$(gcloud projects describe ${PROJECT_ID} --format="value(projectNumber)")
+echo "REGION:${REGION}"
+echo "PROJECT_NUMBER:${PROJECT_NUMBER}"
+mkdir -p tmp
+
+if [[ ${CLUSTER_TYPE} == "autopilot" ]]; then
+  gcloud beta container --project ${PROJECT_ID} clusters create-auto ${CLUSTER_NAME} \
+    --region ${CLUSTER_LOCATION} \
+    --release-channel "rapid" \
+    --network "gke-poc-toolkit" --subnetwork ${CLUSTER_LOCATION} \
+    --enable-master-authorized-networks \
+    --master-authorized-networks 0.0.0.0/0 \
+    --security-group "gke-security-groups@nickeberts.altostrat.com" 
+  # gcloud container clusters update ${CLUSTER_NAME} --project ${PROJECT_ID} \
+  #   --region ${CLUSTER_LOCATION} \
+  #   --enable-master-global-access 
+  gcloud container clusters update ${CLUSTER_NAME} --project ${PROJECT_ID} \
+    --region ${CLUSTER_LOCATION} \
+    --update-labels mesh_id=proj-${PROJECT_NUMBER}
+else
+  gcloud beta container --project ${PROJECT_ID} clusters create ${CLUSTER_NAME} \
+    --zone ${CLUSTER_LOCATION} \
+    --release-channel "rapid" \
+    --machine-type "e2-medium" \
+    --num-nodes "3" \
+    --network "gke-poc-toolkit" \
+    --subnetwork ${REGION} \
+    --enable-ip-alias \
+    --enable-autoscaling --min-nodes "3" --max-nodes "10" \
+    --enable-autoupgrade --enable-autorepair --max-surge-upgrade 1 --max-unavailable-upgrade 0 \
+    --labels mesh_id=proj-${PROJECT_NUMBER} \
+    --autoscaling-profile optimize-utilization \
+    --workload-pool "${PROJECT_ID}.svc.id.goog" \
+    --security-group "gke-security-groups@nickeberts.altostrat.com" \
+    --enable-image-streaming --node-locations ${CLUSTER_LOCATION}
+    # --master-ipv4-cidr ${CONTROL_PLANE_CIDR} \
+    # --enable-private-nodes \
+    # --enable-master-authorized-networks \
+    # --master-authorized-networks 0.0.0.0/0 \
+    # --enable-master-global-access \
+fi
+
 gcloud beta container clusters create ${CLUSTER_NAME} --project ${CLUSTER_PROJECT} /
   --no-enable-basic-auth /
   --cluster-version "1.29.2-gke.1521000" /
