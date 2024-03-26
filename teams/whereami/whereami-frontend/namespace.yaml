@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: whereami-frontend
+  annotations:
+    configmanagement.gke.io/namespace-selector: wherami-fleet-scope-selector
+

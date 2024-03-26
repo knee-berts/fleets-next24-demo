@@ -67,6 +67,23 @@ else
     # --enable-master-global-access \
 fi
 
+gcloud projects add-iam-policy-binding ${PROJECT_ID} --role roles/monitoring.viewer --member "serviceAccount:${PROJECT_ID}.svc.id.goog[prod-tools/default]"
+
+gcloud container clusters get-credentials ${CLUSTER_NAME} --zone ${CLUSTER_LOCATION} --project ${PROJECT_ID}
+
+openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
+-subj "/CN=frontend.endpoints.${PROJECT_ID}.cloud.goog/O=Edge2Mesh Inc" \
+-keyout tmp/frontend.endpoints.${PROJECT_ID}.cloud.goog.key \
+-out tmp/frontend.endpoints.${PROJECT_ID}.cloud.goog.crt
+
+kubectl -n asm-gateways create secret tls edge2mesh-credential \
+--key=tmp/frontend.endpoints.${PROJECT_ID}.cloud.goog.key \
+--cert=tmp/frontend.endpoints.${PROJECT_ID}.cloud.goog.crt --context ${CLUSTER_NAME}
+
+git add . && git commit -m "Added ${CLUSTER_NAME} to the cluster registry folder." && git push origin main
+
+echo "${CLUSTER_NAME} has been deployed and added to the Fleet."
+
 gcloud beta container clusters create ${CLUSTER_NAME} --project ${CLUSTER_PROJECT} /
   --no-enable-basic-auth /
   --cluster-version "1.29.2-gke.1521000" /
