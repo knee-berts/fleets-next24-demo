@@ -6,3 +6,4 @@ metadata:
   #   configmanagement.gke.io/cluster-selector: selector-prod
   labels:
     istio.io/rev: asm-managed
+    istio-injection: enabled
