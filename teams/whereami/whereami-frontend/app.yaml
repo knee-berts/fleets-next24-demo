@@ -6,7 +6,7 @@ metadata:
   labels:
     app: whereami-frontend
   name: whereami-frontend
-  namespace: frontend
+  namespace: whereami-frontend
 ---
 kind: ConfigMap
 metadata:
@@ -15,11 +15,11 @@ metadata:
   labels:
     app: whereami-frontend
   name: whereami-frontend
-  namespace: frontend
+  namespace: whereami-frontend
 apiVersion: v1
 data:
   BACKEND_ENABLED: "True"
-  BACKEND_SERVICE: http://whereami-backend.backend.svc.cluster.local
+  BACKEND_SERVICE: http://whereami-backend.whereami-backend.svc.cluster.local
   ECHO_HEADERS: "False"
   GRPC_ENABLED: "False"
   HOST: 0.0.0.0
@@ -34,7 +34,7 @@ metadata:
   labels:
     app: whereami-frontend
   name: whereami-frontend
-  namespace: frontend
+  namespace: whereami-frontend
 spec:
   ports:
   - name: http
@@ -53,7 +53,7 @@ metadata:
   labels:
     app: whereami-frontend
   name: whereami-frontend
-  namespace: frontend
+  namespace: whereami-frontend
 spec:
   replicas: 3
   selector:

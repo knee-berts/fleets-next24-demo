@@ -6,7 +6,7 @@ metadata:
   labels:
     app: whereami-backend
   name: whereami-backend
-  namespace: backend
+  namespace: whereami-backend
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -16,7 +16,7 @@ metadata:
   labels:
     app: whereami-backend
   name: whereami-backend
-  namespace: backend
+  namespace: whereami-backend
 data:
   BACKEND_ENABLED: "False"
   BACKEND_SERVICE: http://whereami-backend
@@ -34,7 +34,7 @@ metadata:
   labels:
     app: whereami-backend
   name: whereami-backend
-  namespace: backend
+  namespace: whereami-backend
 spec:
   ports:
   - name: http
@@ -53,7 +53,7 @@ metadata:
   labels:
     app: whereami-backend
   name: whereami-backend
-  namespace: backend
+  namespace: whereami-backend
 spec:
   replicas: 3
   selector:

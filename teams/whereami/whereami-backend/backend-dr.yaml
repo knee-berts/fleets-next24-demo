@@ -2,9 +2,9 @@ apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
   name: backend
-  namespace: backend
+  namespace: whereami-backend
 spec:
-  host: whereami-backend.backend.svc.cluster.local
+  host: whereami-backend.whereami-backend.svc.cluster.local
   trafficPolicy:
     connectionPool:
       http:

@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: whereami-vs
-  namespace: frontend
+  namespace: whereami-frontend
 spec:
   gateways:
   - asm-ingress/asm-ingressgateway
