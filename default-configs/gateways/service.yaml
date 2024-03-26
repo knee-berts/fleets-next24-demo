@@ -10,7 +10,15 @@ spec:
   selector:
     asm: ingressgateway-xlb
   ports:
-  - port: 80
-    name: http
-  - port: 443
-    name: https
+  - name: status-port
+    port: 15021
+    protocol: TCP
+    targetPort: 15021
+  - name: http
+    port: 80
+    targetPort: 8080
+    appProtocol: HTTP
+  - name: https
+    port: 443
+    targetPort: 8443
+    appProtocol: HTTP2
