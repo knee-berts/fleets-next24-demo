@@ -7,7 +7,7 @@ metadata:
   #   configmanagement.gke.io/cluster-selector: selector-prod
 spec:
   selector:
-    asm: ingressgateway-xlb # use ASM external ingress gateway
+    asm: asm-ingress-gateway-xlb # use ASM external ingress gateway
   servers:
   - port:
       number: 443

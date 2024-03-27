@@ -5,7 +5,7 @@ metadata:
   namespace: whereami-frontend
 spec:
   gateways:
-  - asm-ingress/asm-ingressgateway
+  - asm-gateways/asm-ingress-gateway-xlb
   hosts:
   - 'frontend.endpoints.fleet-dev-1.cloud.goog'
   http:
