@@ -1,5 +1,5 @@
 kind: ServiceExport
 apiVersion: net.gke.io/v1
 metadata:
-  name: asm-ingressgateway-xlb
+  name: asm-ingress-gateway-xlb
   namespace: asm-gateways
