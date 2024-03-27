@@ -1,0 +1,15 @@
+apiVersion: configsync.gke.io/v1beta1
+kind: RootSync
+metadata:
+  name: default-fleet-configs
+  namespace: config-management-system
+spec:
+  git:
+    auth: none
+    branch: dev
+    dir: /default-configs
+    period: 15s
+    repo: https://github.com/knee-berts/fleets-next24-demo
+    revision: HEAD
+  sourceFormat: unstructured
+  sourceType: git

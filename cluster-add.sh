@@ -50,6 +50,7 @@ else
     --release-channel "rapid" \
     --machine-type "e2-medium" \
     --num-nodes "3" \
+    --gateway-api=standard \
     --network "gke-poc-toolkit" \
     --subnetwork ${REGION} \
     --enable-ip-alias \
@@ -84,33 +85,34 @@ git add . && git commit -m "Added ${CLUSTER_NAME} to the cluster registry folder
 
 echo "${CLUSTER_NAME} has been deployed and added to the Fleet."
 
-gcloud beta container clusters create ${CLUSTER_NAME} --project ${CLUSTER_PROJECT} /
-  --no-enable-basic-auth /
-  --cluster-version "1.29.2-gke.1521000" /
-  --release-channel "rapid" /
-  --machine-type "e2-standard-4" /
-  --image-type "COS_CONTAINERD" /
-  --disk-type "pd-balanced" --disk-size "100" /
-  --metadata disable-legacy-endpoints=true /
-  --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" /
-  --num-nodes "3" /
-  --logging=SYSTEM,WORKLOAD,API_SERVER,SCHEDULER,CONTROLLER_MANAGER /
-  --monitoring=SYSTEM,API_SERVER,SCHEDULER,CONTROLLER_MANAGER,STORAGE,POD,DEPLOYMENT,STATEFULSET,DAEMONSET,HPA /
-  --enable-private-nodes --enable-master-global-access --enable-ip-alias /
-  --network "projects/fleet-dev-1/global/networks/default" /
-  --subnetwork "projects/fleet-dev-1/regions/us-east1/subnetworks/default" /
-  --enable-intra-node-visibility --cluster-dns=clouddns --cluster-dns-scope=cluster /
-  --default-max-pods-per-node "110" /
-  --security-posture=standard --workload-vulnerability-scanning=enterprise /
-  --enable-dataplane-v2 --enable-master-authorized-networks /
-  --addons HorizontalPodAutoscaling,HttpLoadBalancing,NodeLocalDNS,GcePersistentDiskCsiDriver,BackupRestore,GcpFilestoreCsiDriver,GcsFuseCsiDriverConfig /
-  --enable-autoupgrade --enable-autorepair /
-  --max-surge-upgrade 1 --max-unavailable-upgrade 0 /
-  --labels env=development,region=us-east1 /
-  --binauthz-evaluation-mode=DISABLED /
-  --autoscaling-profile optimize-utilization /
-  --enable-managed-prometheus /
-  --workload-pool "fleet-dev-1.svc.id.goog" /
-  --enable-shielded-nodes /
-  --security-group "gke-security-groups@gkedemos.joonix.net" /
+gcloud beta container clusters create ${CLUSTER_NAME} --project ${CLUSTER_PROJECT} \
+  --location ${LOCATION} \
+  --no-enable-basic-auth \
+  --cluster-version "1.29.2-gke.1521000" \
+  --release-channel "rapid" \
+  --machine-type "e2-standard-4" \
+  --image-type "COS_CONTAINERD" \
+  --disk-type "pd-balanced" --disk-size "100" \
+  --metadata disable-legacy-endpoints=true \
+  --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" \
+  --num-nodes "3" \
+  --logging=SYSTEM,WORKLOAD,API_SERVER,SCHEDULER,CONTROLLER_MANAGER \
+  --monitoring=SYSTEM,API_SERVER,SCHEDULER,CONTROLLER_MANAGER,STORAGE,POD,DEPLOYMENT,STATEFULSET,DAEMONSET,HPA \
+  --enable-private-nodes --enable-master-global-access --enable-ip-alias \
+  --network "projects/$CLUSTER_PROJECT/global/networks/default" \
+  --subnetwork "projects/$CLUSTER_PROJECT/regions/$LOCATION/subnetworks/default" \
+  --enable-intra-node-visibility --cluster-dns=clouddns --cluster-dns-scope=cluster \
+  --default-max-pods-per-node "110" \
+  --security-posture=standard --workload-vulnerability-scanning=enterprise \
+  --enable-dataplane-v2 --enable-master-authorized-networks \
+  --addons HorizontalPodAutoscaling,HttpLoadBalancing,NodeLocalDNS,GcePersistentDiskCsiDriver,BackupRestore,GcpFilestoreCsiDriver,GcsFuseCsiDriver \
+  --enable-autoupgrade --enable-autorepair \
+  --max-surge-upgrade 1 --max-unavailable-upgrade 0 \
+  --labels environment=${ENV},region=${LOCATION} \
+  --binauthz-evaluation-mode=DISABLED \
+  --autoscaling-profile optimize-utilization \
+  --enable-managed-prometheus \
+  --workload-pool "$CLUSTER_PROJECT.svc.id.goog" \
+  --enable-shielded-nodes \
+  --security-group "gke-security-groups@gkedemos.joonix.net" \
   --enable-image-streaming

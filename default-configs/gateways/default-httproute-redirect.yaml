@@ -2,11 +2,11 @@ kind: HTTPRoute
 apiVersion: gateway.networking.k8s.io/v1beta1
 metadata:
   name: http-to-https-redirect-httproute
-  namespace: asm-ingress
+  namespace: asm-gateways
 spec:
   parentRefs:
   - name: external-http
-    namespace: asm-ingress
+    namespace: asm-gateways
     sectionName: http
   rules:
   - filters:

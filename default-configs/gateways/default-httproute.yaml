@@ -2,11 +2,11 @@ apiVersion: gateway.networking.k8s.io/v1beta1
 kind: HTTPRoute
 metadata:
   name: default-httproute
-  namespace: asm-ingress
+  namespace: asm-gateways
 spec:
   parentRefs:
   - name: external-http
-    namespace: asm-ingress
+    namespace: asm-gateways
     sectionName: https
   rules:
   - backendRefs:
