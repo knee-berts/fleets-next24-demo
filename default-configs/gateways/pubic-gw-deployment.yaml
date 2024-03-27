@@ -14,7 +14,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      asm: ingressgateway-xlb
+      asm: asm-ingress-gateway-xlb
   template:
     metadata:
       annotations:
@@ -22,7 +22,7 @@ spec:
         # required configuration.
         inject.istio.io/templates: gateway
       labels:
-        asm: ingressgateway-xlb
+        asm: asm-ingress-gateway-xlb
         # asm.io/rev: ${ASM_LABEL} # This is required only if the namespace is not labeled.
     spec:
       containers:
