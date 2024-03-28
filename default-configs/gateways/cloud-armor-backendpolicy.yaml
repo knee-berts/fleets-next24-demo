@@ -9,4 +9,4 @@ spec:
   targetRef:
     group: net.gke.io
     kind: ServiceImport
-    name: asm-ingressgateway
+    name: asm-ingress-gateway

@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: asm-ingressgateway
+  name: asm-ingress-gateway
   namespace: asm-gateways
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: asm-ingressgateway-xlb
+  name: asm-ingress-gateway-xlb
   # annotations:
   #   configmanagement.gke.io/cluster-selector: selector-prod
   namespace: asm-gateways
@@ -53,12 +53,12 @@ spec:
         runAsGroup: 1337
         runAsNonRoot: true
         runAsUser: 1337
-      serviceAccountName: asm-ingressgateway
+      serviceAccountName: asm-ingress-gateway
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: asm-ingressgateway
+  name: asm-ingress-gateway
   namespace: asm-gateways
 spec:
   maxReplicas: 5
@@ -73,4 +73,4 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: asm-ingressgateway-xlb
+    name: asm-ingress-gateway-xlb
