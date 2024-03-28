@@ -8,7 +8,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    asm: ingressgateway-xlb
+    asm: ingress-gateway-xlb
   ports:
   - name: status-port
     port: 15021
