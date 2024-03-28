@@ -22,26 +22,4 @@ spec:
     port: 443
     targetPort: 8443
     appProtocol: HTTP2
----
-apiVersion: v1
-kind: Service
-metadata: 
-  name: asm-ingress-gateway-svc
-  namespace: asm-gateways
-spec:
-  type: LoadBalancer
-  selector:
-    app: frontend
-  ports:
-  - name: status-port
-    port: 15021
-    protocol: TCP
-    targetPort: 15021
-  - name: http
-    port: 80
-    targetPort: 8080
-    appProtocol: HTTP
-  - name: https
-    port: 443
-    targetPort: 8443
-    appProtocol: HTTP2
+
