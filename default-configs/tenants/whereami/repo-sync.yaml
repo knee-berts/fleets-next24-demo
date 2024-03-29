@@ -1,28 +1,28 @@
-kind: RepoSync
-apiVersion: configsync.gke.io/v1beta1
-metadata:
-  name: repo-sync
-  annotations:
-    configmanagement.gke.io/namespace-selector: whereami-fleet-scope-selector
-spec:
-  sourceFormat: unstructured
-  git:
-    repo: https://github.com/knee-berts/fleets-next24-demo
-    branch: dev
-    dir: tenants/wherami
-    auth: none
----
-kind: RoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: whereami
-  annotations:
-    configmanagement.gke.io/namespace-selector: whereami-fleet-scope-selector
-subjects:
-- kind: ServiceAccount
-  name: ns-reconciler-whereami
-  namespace: config-management-system
-roleRef:
-  kind: ClusterRole
-  name: admin
-  apiGroup: rbac.authorization.k8s.io
+# kind: RepoSync
+# apiVersion: configsync.gke.io/v1beta1
+# metadata:
+#   name: repo-sync
+#   annotations:
+#     configmanagement.gke.io/namespace-selector: whereami-team-scope
+# spec:
+#   sourceFormat: unstructured
+#   git:
+#     repo: https://github.com/knee-berts/fleets-next24-demo
+#     branch: dev
+#     dir: tenants/wherami
+#     auth: none
+# ---
+# kind: RoleBinding
+# apiVersion: rbac.authorization.k8s.io/v1
+# metadata:
+#   name: whereami
+#   annotations:
+#     configmanagement.gke.io/namespace-selector: whereami-team-scope
+# subjects:
+# - kind: ServiceAccount
+#   name: ns-reconciler-whereami
+#   namespace: config-management-system
+# roleRef:
+#   kind: ClusterRole
+#   name: admin
+#   apiGroup: rbac.authorization.k8s.io

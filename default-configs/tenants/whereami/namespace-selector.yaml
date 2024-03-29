@@ -1,7 +1,7 @@
 kind: NamespaceSelector
 apiVersion: configmanagement.gke.io/v1
 metadata:
-  name: whereami-fleet-scope-selector
+  name: whereami-team-scope
 spec:
   mode: dynamic
   selector:

@@ -4,7 +4,7 @@ kind: NetworkPolicy
 metadata:
   name: whereami-default-deny-ingress
   annotations:
-    configmanagement.gke.io/namespace-selector: wherami-fleet-scope-selector
+    configmanagement.gke.io/namespace-selector: whereami-team-scope
 spec:
   podSelector: {}
   policyTypes:

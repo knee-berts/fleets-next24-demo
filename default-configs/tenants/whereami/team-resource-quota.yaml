@@ -3,7 +3,7 @@ kind: TeamResourceQuota
 metadata:
   name: whereami-resource-quota
   annotations:
-    configmanagement.gke.io/namespace-selector: whereami-fleet-scope-selector
+    configmanagement.gke.io/namespace-selector: whereami-team-scope
 spec:
   enforcementAction: deny
   match:
