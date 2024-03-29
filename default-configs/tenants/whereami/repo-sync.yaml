@@ -1,0 +1,28 @@
+kind: RepoSync
+apiVersion: configsync.gke.io/v1beta1
+metadata:
+  name: repo-sync
+  annotations:
+    configmanagement.gke.io/namespace-selector: whereami
+spec:
+  sourceFormat: unstructured
+  git:
+    repo: https://github.com/knee-berts/fleets-next24-demo
+    branch: dev
+    dir: tenants/wherami
+    auth: none
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: be-bookstore
+  annotations:
+    configmanagement.gke.io/namespace-selector: whereami
+subjects:
+- kind: ServiceAccount
+  name: ns-reconciler-whereami
+  namespace: config-management-system
+roleRef:
+  kind: ClusterRole
+  name: admin
+  apiGroup: rbac.authorization.k8s.io

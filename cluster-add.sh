@@ -49,12 +49,12 @@ else
     --zone ${CLUSTER_LOCATION} \
     --release-channel "rapid" \
     --machine-type "e2-medium" \
-    --num-nodes "3" \
+    --num-nodes "4" \
     --gateway-api=standard \
     --network "gke-poc-toolkit" \
     --subnetwork ${REGION} \
     --enable-ip-alias \
-    --enable-autoscaling --min-nodes "3" --max-nodes "10" \
+    --enable-autoscaling --min-nodes "3" --max-nodes "15" \
     --enable-autoupgrade --enable-autorepair --max-surge-upgrade 1 --max-unavailable-upgrade 0 \
     --labels mesh_id=proj-${PROJECT_NUMBER} \
     --autoscaling-profile optimize-utilization \
