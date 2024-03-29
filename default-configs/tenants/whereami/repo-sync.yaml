@@ -3,7 +3,7 @@ apiVersion: configsync.gke.io/v1beta1
 metadata:
   name: repo-sync
   annotations:
-    configmanagement.gke.io/namespace-selector: whereami
+    configmanagement.gke.io/namespace-selector: whereami-fleet-scope-selector
 spec:
   sourceFormat: unstructured
   git:
@@ -15,9 +15,9 @@ spec:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: be-bookstore
+  name: whereami
   annotations:
-    configmanagement.gke.io/namespace-selector: whereami
+    configmanagement.gke.io/namespace-selector: whereami-fleet-scope-selector
 subjects:
 - kind: ServiceAccount
   name: ns-reconciler-whereami
