@@ -9,8 +9,6 @@ rules:
   - "networking.istio.io"
   - "security.istio.io"
   resources:
-  - "virtualservices"
-  - "authorizationpolicies"
-  - "gateways"
+  - "*"
   verbs:
   - "*"
