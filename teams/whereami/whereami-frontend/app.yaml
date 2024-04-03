@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  annotations:
-    configmanagement.gke.io/namespace-selector: wherami-fleet-scope-selector
+  # annotations:
+  #   configmanagement.gke.io/namespace-selector: wherami-fleet-scope-selector
   labels:
     app: whereami-frontend
   name: whereami-frontend
@@ -10,8 +10,8 @@ metadata:
 ---
 kind: ConfigMap
 metadata:
-  annotations:
-    configmanagement.gke.io/namespace-selector: wherami-fleet-scope-selector
+  # annotations:
+  #   configmanagement.gke.io/namespace-selector: wherami-fleet-scope-selector
   labels:
     app: whereami-frontend
   name: whereami-frontend
@@ -29,8 +29,8 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    configmanagement.gke.io/namespace-selector: wherami-fleet-scope-selector
+  # annotations:
+  #   configmanagement.gke.io/namespace-selector: wherami-fleet-scope-selector
   labels:
     app: whereami-frontend
   name: whereami-frontend
@@ -48,8 +48,8 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    configmanagement.gke.io/namespace-selector: wherami-fleet-scope-selector
+  # annotations:
+  #   configmanagement.gke.io/namespace-selector: wherami-fleet-scope-selector
   labels:
     app: whereami-frontend
   name: whereami-frontend

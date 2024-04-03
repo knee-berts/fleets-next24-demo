@@ -4,6 +4,6 @@ metadata:
   name: whereami-backend
   labels:
     istio-injection: enabled
-  annotations:
-    configmanagement.gke.io/namespace-selector: wherami-fleet-scope-selector
+  # annotations:
+  #   configmanagement.gke.io/namespace-selector: wherami-fleet-scope-selector
 
