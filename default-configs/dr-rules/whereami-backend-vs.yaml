@@ -9,6 +9,6 @@ spec:
   http:
   - route:
     - destination:
-        host: whereami-frontend
+        host: whereami-backend
         port:
           number: 80
