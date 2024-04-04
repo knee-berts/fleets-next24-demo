@@ -4,6 +4,7 @@ metadata:
   name: whereami-frontend
   annotations:
     configmanagement.gke.io/namespace-selector: whereami-frontend
+    configsync.gke.io/deletion-propagation-policy: Foreground
 spec:
   sourceFormat: unstructured
   git:
