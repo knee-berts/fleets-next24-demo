@@ -1,29 +1,29 @@
-kind: RepoSync
-apiVersion: configsync.gke.io/v1beta1
-metadata:
-  name: whereami-frontend
-  annotations:
-    configmanagement.gke.io/namespace-selector: whereami-frontend
-    configsync.gke.io/deletion-propagation-policy: Foreground
-spec:
-  sourceFormat: unstructured
-  git:
-    repo: https://github.com/knee-berts/fleets-next24-demo
-    branch: dev
-    dir: teams/whereami/frontend
-    auth: none
----
-kind: RoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: whereami-frontend
-  annotations:
-    configmanagement.gke.io/namespace-selector: whereami-frontend
-subjects:
-- kind: ServiceAccount
-  name: ns-reconciler-whereami-frontend-whereami-frontend-17
-  namespace: config-management-system
-roleRef:
-  kind: ClusterRole
-  name: edit
-  apiGroup: rbac.authorization.k8s.io
+# kind: RepoSync
+# apiVersion: configsync.gke.io/v1beta1
+# metadata:
+#   name: whereami-frontend
+#   annotations:
+#     configmanagement.gke.io/namespace-selector: whereami-frontend
+#     configsync.gke.io/deletion-propagation-policy: Foreground
+# spec:
+#   sourceFormat: unstructured
+#   git:
+#     repo: https://github.com/knee-berts/fleets-next24-demo
+#     branch: dev
+#     dir: teams/whereami/frontend
+#     auth: none
+# ---
+# kind: RoleBinding
+# apiVersion: rbac.authorization.k8s.io/v1
+# metadata:
+#   name: whereami-frontend
+#   annotations:
+#     configmanagement.gke.io/namespace-selector: whereami-frontend
+# subjects:
+# - kind: ServiceAccount
+#   name: ns-reconciler-whereami-frontend-whereami-frontend-17
+#   namespace: config-management-system
+# roleRef:
+#   kind: ClusterRole
+#   name: edit
+#   apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,17 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+ name: backend
+ namespace: backend
+spec:
+  selector:
+    matchLabels:
+      app: whereami-backend
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: [ "mesh-demo-01.svc.id.goog/ns/frontend/sa/whereami-frontend" ]
+  - to:
+    - operation:
+        methods: ["GET"]
