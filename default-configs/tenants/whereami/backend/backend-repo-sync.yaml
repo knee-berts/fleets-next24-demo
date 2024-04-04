@@ -20,9 +20,9 @@ metadata:
     configmanagement.gke.io/namespace-selector: whereami-backend
 subjects:
 - kind: ServiceAccount
-  name: ns-reconciler-whereami-backend
+  name: ns-reconciler-whereami-backend-whereami-backend-16
   namespace: config-management-system
 roleRef:
   kind: ClusterRole
-  name: admin
+  name: edit
   apiGroup: rbac.authorization.k8s.io
