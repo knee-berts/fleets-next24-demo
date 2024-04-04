@@ -15,7 +15,7 @@ spec:
         enabled: true
         failover:
           - from: us-east1
-            to: us-west1
+            to: us-central1
           - from: us-central1
             to: us-east1
     outlierDetection:
