@@ -4,7 +4,7 @@ metadata:
   name: whereami-backend
   annotations:
     configmanagement.gke.io/namespace-selector: whereami-backend
-    configsync.gke.io/deletion-propagation-policy: Foreground
+    # configsync.gke.io/deletion-propagation-policy: Foreground
 spec:
   sourceFormat: unstructured
   git:
