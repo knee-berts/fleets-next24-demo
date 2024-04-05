@@ -7,7 +7,7 @@ spec:
   gateways:
   - asm-gateways/asm-ingress-gateway-xlb
   hosts:
-  - 'frontend.endpoints.fleet-dev-1.cloud.goog'
+  - 'frontend.endpoints.tenant-management-394215.cloud.goog'
   http:
   - route:
     - destination:

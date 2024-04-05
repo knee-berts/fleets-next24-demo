@@ -9,7 +9,7 @@ spec:
   sourceFormat: unstructured
   git:
     repo: https://github.com/knee-berts/fleets-next24-demo
-    branch: dev
+    branch: test
     dir: teams/whereami/backend
     auth: none
 ---
