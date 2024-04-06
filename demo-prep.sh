@@ -47,7 +47,7 @@ gcloud compute security-policies rules create 1000 --project ${PROJECT_ID} \
     --action "deny-403" \
     --description "XSS attack filtering"
 
-
+### Add members in UI
 ### Need at least one Fleet Membership to assign controller to
 gcloud container fleet ingress enable --project ${PROJECT_ID}
 
@@ -55,7 +55,10 @@ gcloud projects add-iam-policy-binding ${PROJECT_ID} --project ${PROJECT_ID} \
     --member "serviceAccount:service-${PROJECT_NUMBER}@gcp-sa-multiclusteringress.iam.gserviceaccount.com" \
     --role "roles/container.admin"
 
-
+### Install KSP
+### Install Poco
+### Install CS
+### Install ASM
 ### Do this right before a sync 
 gcloud certificate-manager certificates create mcg-cert --project ${PROJECT_ID} \
     --domains="frontend.endpoints.${PROJECT_ID}.cloud.goog"
@@ -66,4 +69,8 @@ gcloud certificate-manager maps entries create mcg-cert-map-entry --project ${PR
     --map="mcg-cert-map" \
     --certificates="mcg-cert" \
     --hostname="frontend.endpoints.${PROJECT_ID}.cloud.goog"
+  
+### Setup Root Sync
+
+### Create Teams
 
