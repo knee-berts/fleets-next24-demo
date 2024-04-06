@@ -70,6 +70,11 @@ gcloud certificate-manager maps entries create mcg-cert-map-entry --project ${PR
     --certificates="mcg-cert" \
     --hostname="frontend.endpoints.${PROJECT_ID}.cloud.goog"
 
+
+gcloud compute addresses create store-ip --global --project ${PROJECT_ID}
+
+export MCG_IP=$(gcloud compute addresses describe store-ip --project ${PROJECT_ID} --global --format "value(address)") 
+echo ${MCG_IP}
 gcloud certificate-manager certificates create store-cert --project ${PROJECT_ID} \
     --domains="frontend.endpoints.${PROJECT_ID}.cloud.goog"
 

@@ -7,4 +7,4 @@ paths: {}
 host: "store.endpoints.tenant-management-394215.cloud.goog"
 x-google-endpoints:
 - name: "store.endpoints.tenant-management-394215.cloud.goog"
-  target: "34.36.90.15"
+  target: "34.111.130.170"

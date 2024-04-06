@@ -19,4 +19,4 @@ spec:
       - kind: HTTPRoute
   addresses:
   - type: NamedAddress
-    value: mcg-ip
+    value: store-ip
