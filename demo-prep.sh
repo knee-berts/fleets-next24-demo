@@ -69,6 +69,16 @@ gcloud certificate-manager maps entries create mcg-cert-map-entry --project ${PR
     --map="mcg-cert-map" \
     --certificates="mcg-cert" \
     --hostname="frontend.endpoints.${PROJECT_ID}.cloud.goog"
+
+gcloud certificate-manager certificates create store-cert --project ${PROJECT_ID} \
+    --domains="frontend.endpoints.${PROJECT_ID}.cloud.goog"
+
+gcloud certificate-manager maps create store-cert-map --project ${PROJECT_ID}
+
+gcloud certificate-manager maps entries create store-cert-map-entry --project ${PROJECT_ID} \
+    --map="store-cert-map" \
+    --certificates="store-cert" \
+    --hostname="frontend.endpoints.${PROJECT_ID}.cloud.goog"
   
 ### Setup Root Sync
 

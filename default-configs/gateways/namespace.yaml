@@ -5,5 +5,5 @@ metadata:
   # annotations:
   #   configmanagement.gke.io/cluster-selector: selector-prod
   labels:
-    istio.io/rev: asm-managed-rapid
+    istio.io/rev: asm-managed
     istio-injection: enabled
