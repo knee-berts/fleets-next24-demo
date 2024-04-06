@@ -37,7 +37,7 @@ metadata: # kpt-merge: frontend/frontend-ingress
   namespace: frontend
 spec:
   hosts:
-  - "*"
+  - "store.endpoints.tenant-management-394215.cloud.goog"
   gateways:
   - asm-gateways/asm-ingress-gateway-xlb
   http:
