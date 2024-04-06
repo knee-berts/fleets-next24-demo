@@ -78,12 +78,12 @@ echo ${MCG_IP}
 gcloud certificate-manager certificates create store-cert --project ${PROJECT_ID} \
     --domains="frontend.endpoints.${PROJECT_ID}.cloud.goog"
 
-gcloud certificate-manager maps create store-cert-map --project ${PROJECT_ID}
+gcloud certificate-manager maps create boutique-cert-map --project ${PROJECT_ID}
 
-gcloud certificate-manager maps entries create store-cert-map-entry --project ${PROJECT_ID} \
-    --map="store-cert-map" \
-    --certificates="store-cert" \
-    --hostname="frontend.endpoints.${PROJECT_ID}.cloud.goog"
+gcloud certificate-manager maps entries create boutique-cert-map-entry --project ${PROJECT_ID} \
+    --map="boutique-cert-map" \
+    --certificates="boutique-cert" \
+    --hostname="boutique.endpoints.${PROJECT_ID}.cloud.goog"
   
 ### Setup Root Sync
 

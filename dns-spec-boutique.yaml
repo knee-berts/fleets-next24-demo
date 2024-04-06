@@ -4,7 +4,7 @@ info:
   title: "Cloud Endpoints DNS"
   version: "1.0.0"
 paths: {}
-host: "store.endpoints.tenant-management-394215.cloud.goog"
+host: "boutique.endpoints.tenant-management-394215.cloud.goog"
 x-google-endpoints:
-- name: "store.endpoints.tenant-management-394215.cloud.goog"
+- name: "boutique.endpoints.tenant-management-394215.cloud.goog"
   target: "34.111.130.170"
