@@ -1,15 +1,34 @@
-apiVersion: configsync.gke.io/v1beta1
-kind: RootSync
-metadata:
-  name: default-fleet-configs
-  namespace: config-management-system
+applySpecVersion: 1
 spec:
-  git:
-    auth: none
-    branch: dev
-    dir: /default-configs
-    period: 15s
-    repo: https://github.com/knee-berts/fleets-next24-demo
-    revision: HEAD
-  sourceFormat: unstructured
-  sourceType: git
+  cluster: null
+  configSync:
+    enabled: true
+    gcpServiceAccountEmail: null
+    httpsProxy: null
+    metricsGcpServiceAccountEmail: null
+    policyDir: /default-configs
+    preventDrift: false
+    secretType: none
+    sourceFormat: unstructured
+    sourceType: git
+    syncBranch: test
+    syncRepo: https://github.com/knee-berts/fleets-next24-demo
+    syncRev: HEAD
+    syncWait: 15
+  hierarchyController:
+    enableHierarchicalResourceQuota: false
+    enablePodTreeLabels: false
+    enabled: false
+  policyController:
+    auditIntervalSeconds: 30
+    enabled: true
+    exemptableNamespaces: []
+    logDeniesEnabled: false
+    monitoring:
+      backends:
+      - PROMETHEUS
+      - CLOUD_MONITORING
+    mutationEnabled: false
+    referentialRulesEnabled: true
+    templateLibraryInstalled: true
+  upgrades: manual
