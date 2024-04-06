@@ -4,7 +4,7 @@ metadata:
   name: store-external-http
   namespace: asm-gateways
   annotations:
-    networking.gke.io/certmap: boutique-cert-map
+    networking.gke.io/certmap: boutique-shop-cert-map
 spec:
   gatewayClassName: gke-l7-global-external-managed-mc
   listeners:

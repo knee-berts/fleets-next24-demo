@@ -75,14 +75,14 @@ gcloud compute addresses create store-ip --global --project ${PROJECT_ID}
 
 export MCG_IP=$(gcloud compute addresses describe store-ip --project ${PROJECT_ID} --global --format "value(address)") 
 echo ${MCG_IP}
-gcloud certificate-manager certificates create store-cert --project ${PROJECT_ID} \
-    --domains="frontend.endpoints.${PROJECT_ID}.cloud.goog"
+gcloud certificate-manager certificates create boutique-shop-cert --project ${PROJECT_ID} \
+    --domains="boutique.endpoints.${PROJECT_ID}.cloud.goog"
 
-gcloud certificate-manager maps create boutique-cert-map --project ${PROJECT_ID}
+gcloud certificate-manager maps create boutique-shop-cert-map --project ${PROJECT_ID}
 
-gcloud certificate-manager maps entries create boutique-cert-map-entry --project ${PROJECT_ID} \
-    --map="boutique-cert-map" \
-    --certificates="boutique-cert" \
+gcloud certificate-manager maps entries create boutique-shop-cert-map-entry --project ${PROJECT_ID} \
+    --map="boutique-shop-cert-map" \
+    --certificates="boutique-shop-cert" \
     --hostname="boutique.endpoints.${PROJECT_ID}.cloud.goog"
   
 ### Setup Root Sync
