@@ -1,76 +1,76 @@
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: asm-ingress-gateway
-  namespace: asm-gateways
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: asm-ingress-gateway-xlb
-  # annotations:
-  #   configmanagement.gke.io/cluster-selector: selector-prod
-  namespace: asm-gateways
-spec:
-  selector:
-    matchLabels:
-      asm: asm-ingress-gateway-xlb
-  template:
-    metadata:
-      annotations:
-        # This is required to tell Anthos Service Mesh to inject the gateway with the
-        # required configuration.
-        inject.istio.io/templates: gateway
-      labels:
-        asm: asm-ingress-gateway-xlb
-        # asm.io/rev: ${ASM_LABEL} # This is required only if the namespace is not labeled.
-    spec:
-      containers:
-      - name: istio-proxy
-        image: auto
-        env:
-        - name: ISTIO_META_UNPRIVILEGED_POD
-          value: "true"
-        ports:
-        - containerPort: 8080
-          protocol: TCP
-        resources:
-          limits:
-            cpu: 2000m
-            memory: 1024Mi
-          requests:
-            cpu: 100m
-            memory: 128Mi
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-              - all
-          privileged: false
-          readOnlyRootFilesystem: true
-      securityContext:
-        fsGroup: 1337
-        runAsGroup: 1337
-        runAsNonRoot: true
-        runAsUser: 1337
-      serviceAccountName: asm-ingress-gateway
----
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: asm-ingress-gateway
-  namespace: asm-gateways
-spec:
-  maxReplicas: 5
-  minReplicas: 3
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 50
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: asm-ingress-gateway-xlb
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#   name: asm-ingress-gateway
+#   namespace: asm-gateways
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: asm-ingress-gateway-xlb
+#   # annotations:
+#   #   configmanagement.gke.io/cluster-selector: selector-prod
+#   namespace: asm-gateways
+# spec:
+#   selector:
+#     matchLabels:
+#       asm: asm-ingress-gateway-xlb
+#   template:
+#     metadata:
+#       annotations:
+#         # This is required to tell Anthos Service Mesh to inject the gateway with the
+#         # required configuration.
+#         inject.istio.io/templates: gateway
+#       labels:
+#         asm: asm-ingress-gateway-xlb
+#         # asm.io/rev: ${ASM_LABEL} # This is required only if the namespace is not labeled.
+#     spec:
+#       containers:
+#       - name: istio-proxy
+#         image: auto
+#         env:
+#         - name: ISTIO_META_UNPRIVILEGED_POD
+#           value: "true"
+#         ports:
+#         - containerPort: 8080
+#           protocol: TCP
+#         resources:
+#           limits:
+#             cpu: 2000m
+#             memory: 1024Mi
+#           requests:
+#             cpu: 100m
+#             memory: 128Mi
+#         securityContext:
+#           allowPrivilegeEscalation: false
+#           capabilities:
+#             drop:
+#               - all
+#           privileged: false
+#           readOnlyRootFilesystem: true
+#       securityContext:
+#         fsGroup: 1337
+#         runAsGroup: 1337
+#         runAsNonRoot: true
+#         runAsUser: 1337
+#       serviceAccountName: asm-ingress-gateway
+# ---
+# apiVersion: autoscaling/v2
+# kind: HorizontalPodAutoscaler
+# metadata:
+#   name: asm-ingress-gateway
+#   namespace: asm-gateways
+# spec:
+#   maxReplicas: 5
+#   minReplicas: 3
+#   metrics:
+#   - type: Resource
+#     resource:
+#       name: cpu
+#       target:
+#         type: Utilization
+#         averageUtilization: 50
+#   scaleTargetRef:
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     name: asm-ingress-gateway-xlb
