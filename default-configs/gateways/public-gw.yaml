@@ -4,8 +4,8 @@ metadata:
   name: asm-ingress-gateway-xlb
   namespace: asm-gateways
 spec:
-  # selector:
-  #   asm: asm-ingress-gateway-xlb # use ASM external ingress gateway
+  selector:
+    asm: asm-ingress-gateway-xlb # use ASM external ingress gateway
   servers:
   - port:
       number: 443
