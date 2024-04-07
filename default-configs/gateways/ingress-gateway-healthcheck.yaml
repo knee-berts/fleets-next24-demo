@@ -15,4 +15,4 @@ spec:
     group: net.gke.io
     kind: ServiceImport
     name: asm-ingress-gateway-xlb
-    namespace: asm-gateways
+    # namespace: asm-gateways
