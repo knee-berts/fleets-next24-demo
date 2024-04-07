@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: asm-gateways
+  labels:
+    # istio.io/rev: asm-managed-rapid
+    istio-injection: enabled

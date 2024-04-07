@@ -1,0 +1,10 @@
+swagger: "2.0"
+info:
+  description: "Cloud Endpoints DNS"
+  title: "Cloud Endpoints DNS"
+  version: "1.0.0"
+paths: {}
+host: "boutique.endpoints.tenant-management-394215.cloud.goog"
+x-google-endpoints:
+- name: "boutique.endpoints.tenant-management-394215.cloud.goog"
+  target: "34.111.130.170"

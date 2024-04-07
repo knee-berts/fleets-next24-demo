@@ -1,0 +1,206 @@
+# Copyright 2024 Google LLC
+#
+# This is “Software” that is licensed under the “General Software” section of
+# the Service Specific Terms (https://cloud.google.com/terms/service-terms) for
+# usage in accordance with the following “Scope of Use”: This file may only be
+# used on an Anthos cluster, including any associated ci/cd use. “Anthos
+# cluster” is defined as “A Cluster (of any kind) registered to a fleet project
+# where the Anthos API is enabled”.
+
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: teamresourcequota
+  annotations:
+    description: Implements a team (multi-namespace) resource quota. Team namespaces are declared using a selector and restricted to a single `ResourceQuota`. The required and aggregated team resource quota fields are `limits.cpu`, `limits.memory`, `requests.cpu`, `requests.memory`,`requests.storage`, `services.loadbalancers`, and `services.nodeports`. Pods are also restricted in team namespaces that do not have a `ResourceQuota`. Optionally, multiple constraints can be configured to implement tiered audit, warning, and deny enforcement levels.
+    metadata.gatekeeper.sh/requires-sync-data: |
+      "[
+        [
+          {
+            "groups": [""],
+            "versions": ["v1"],
+            "kinds": ["Namespace"]
+          }
+        ],
+        [
+          {
+            "groups": [""],
+            "versions": ["v1"],
+            "kinds": ["ResourceQuota"]
+          }
+        ]
+      ]"
+    metadata.gatekeeper.sh/title: Team Resource Quota [PREVIEW]
+    metadata.gatekeeper.sh/version: 0.1.2-preview
+spec:
+  crd:
+    spec:
+      names:
+        kind: TeamResourceQuota
+      validation:
+        openAPIV3Schema:
+          properties:
+            fields:
+              description: Team ResourceQuota fields
+              properties:
+                limits.cpu:
+                  description: Team aggregate limits.cpu
+                  type: string
+                limits.memory:
+                  description: Team aggregate limits.memory
+                  type: string
+                requests.cpu:
+                  description: Team aggregate requests.cpu
+                  type: string
+                requests.memory:
+                  description: Team aggregate requests.memory
+                  type: string
+                requests.storage:
+                  description: Team aggregate requests.storage
+                  type: string
+                services.loadbalancers:
+                  description: Team aggregate services.loadbalancers
+                  type: string
+                services.nodeports:
+                  description: Team aggregate services.nodeports
+                  type: string
+              required:
+                - limits.cpu
+                - limits.memory
+                - requests.cpu
+                - requests.memory
+                - requests.storage
+                - services.loadbalancers
+                - services.nodeports
+              type: object
+            selector:
+              description: Team Namespace Selector
+              oneOf:
+                - properties: null
+                  required:
+                    - label
+              properties:
+                label:
+                  description: Team Namespace Label
+                  properties:
+                    key:
+                      description: Team Namespace Label Key
+                      type: string
+                    value:
+                      description: Team Namespace Label Value
+                      type: string
+                  required:
+                    - key
+                    - value
+                  type: object
+              type: object
+          required:
+            - selector
+            - fields
+          type: object
+  targets:
+    - rego: |
+        package teamresourcequota
+
+        import future.keywords.in
+
+        # Store obj metadata namespace
+        obj_ns := input.review.object.metadata.namespace
+
+        # Store obj metadata name
+        obj_name := input.review.object.metadata.name
+
+        # Team ResourceQuota fields field_name:units parse method ("", "bytes")
+        team_fields := {
+          "limits.cpu": "",
+          "limits.memory": "bytes",
+          "requests.cpu": "",
+          "requests.memory": "bytes",
+          "requests.storage": "bytes",
+          "services.loadbalancers": "",
+          "services.nodeports": "",
+        }
+
+        # Restrict Pods in Team Namespace without a ResourceQuota
+        violation[{"msg": msg}] {
+          input.review.object.kind == "Pod"
+          is_team_namespace(obj_ns)
+
+          not namespace_has_resourcequota(obj_ns, data.inventory)
+
+          msg := sprintf("Team Namespace <%v> does not have a ResourceQuota", [obj_ns])
+        }
+
+        namespace_has_resourcequota(ns, inventory) {
+          count(inventory.namespace[ns][_].ResourceQuota[_]) > 0
+        }
+
+        # Restrict more than one ResourceQuota in a Team Namespaces
+        violation[{"msg": msg}] {
+          input.review.object.kind == "ResourceQuota"
+          is_team_namespace(obj_ns)
+
+          # Retrieve ResourceQuota in same namespace other than obj under review
+          rqs := [rq |
+            rq := data.inventory.namespace[obj_ns][_].ResourceQuota[_].metadata.name
+            rq != obj_name
+          ]
+
+          count(rqs) > 0
+
+          msg := sprintf("Team Namespace <%v> has ResourceQuota: %s", [obj_ns, rqs])
+        }
+
+        # Restrict ResourceQuota without all listed fields
+        violation[{"msg": msg}] {
+          input.review.object.kind == "ResourceQuota"
+          is_team_namespace(obj_ns)
+          some field_name, _ in team_fields
+
+          object.get(input.review, ["object", "spec", "hard", field_name], "") == ""
+
+          msg := sprintf("ResourceQuota <%v> required field <%s> is missing", [obj_name, field_name])
+        }
+
+        # Restrict ResourceQuota in Team Namespace that exceed Team aggregate
+        violation[{"msg": msg}] {
+          input.review.object.kind == "ResourceQuota"
+          team_namespace := is_team_namespace(obj_ns)
+          some field_name, unit in team_fields
+
+          obj_limit := canonical_number(object.get(input.review, ["object", "spec", "hard", field_name], "0"), unit)
+
+          # Retrieve Team Namespaces other than objects
+          team_namespaces := [ns |
+            ns := data.inventory.cluster[_].Namespace[_].metadata.name
+            is_team_namespace(ns)
+            ns != obj_ns
+          ]
+
+          # Retrieve Team field_name and allocated field_name
+          team_limit := canonical_number(object.get(input.parameters, ["fields", field_name], "0"), unit)
+          allocated_limit := sum([canonical_number(value.spec.hard[field_name], unit) |
+            value := data.inventory.namespace[team_namespaces[_]][_].ResourceQuota[_]
+          ])
+
+          allocated_limit + obj_limit > team_limit
+
+          msg := sprintf(
+            "ResourceQuota <%v> %s <%d%s> with existing allocation <%d%s> exceeds Team <%s> aggregate %s: %d%s",
+            [obj_name, field_name, obj_limit, unit, allocated_limit, unit, team_namespace, field_name, team_limit, unit],
+          )
+        }
+
+        # Convert field values to numbers
+        canonical_number(field, "") := units.parse(field)
+
+        # Convert field values to number bytes
+        canonical_number(field, "bytes") := units.parse_bytes(field)
+
+        # Check if Team Namespace using Selector Label
+        is_team_namespace(ns) := value {
+          key := input.parameters.selector.label.key
+          value := input.parameters.selector.label.value
+          data.inventory.cluster[_].Namespace[ns].metadata.labels[key] == value
+        }
+      target: admission.k8s.gatekeeper.sh

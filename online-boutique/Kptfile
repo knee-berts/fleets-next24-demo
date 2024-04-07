@@ -1,0 +1,18 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: online-boutique
+upstream:
+  type: git
+  git:
+    repo: https://github.com/GoogleCloudPlatform/anthos-service-mesh-packages
+    directory: /samples/online-boutique
+    ref: main
+  updateStrategy: resource-merge
+upstreamLock:
+  type: git
+  git:
+    repo: https://github.com/GoogleCloudPlatform/anthos-service-mesh-packages
+    directory: /samples/online-boutique
+    ref: main
+    commit: 6c07a77648c1a44454199ad673ff426776d2e537

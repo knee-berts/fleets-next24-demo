@@ -1,0 +1,34 @@
+applySpecVersion: 1
+spec:
+  cluster: null
+  configSync:
+    enabled: true
+    gcpServiceAccountEmail: null
+    httpsProxy: null
+    metricsGcpServiceAccountEmail: null
+    policyDir: /default-configs
+    preventDrift: false
+    secretType: none
+    sourceFormat: unstructured
+    sourceType: git
+    syncBranch: test
+    syncRepo: https://github.com/knee-berts/fleets-next24-demo
+    syncRev: HEAD
+    syncWait: 15
+  hierarchyController:
+    enableHierarchicalResourceQuota: false
+    enablePodTreeLabels: false
+    enabled: false
+  policyController:
+    auditIntervalSeconds: 30
+    enabled: true
+    exemptableNamespaces: []
+    logDeniesEnabled: false
+    monitoring:
+      backends:
+      - PROMETHEUS
+      - CLOUD_MONITORING
+    mutationEnabled: false
+    referentialRulesEnabled: true
+    templateLibraryInstalled: true
+  upgrades: manual
