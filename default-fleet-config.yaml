@@ -11,7 +11,7 @@ spec:
     secretType: none
     sourceFormat: unstructured
     sourceType: git
-    syncBranch: test
+    syncBranch: prod
     syncRepo: https://github.com/knee-berts/fleets-next24-demo
     syncRev: HEAD
     syncWait: 15
