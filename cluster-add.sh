@@ -61,13 +61,19 @@ gcloud beta container clusters create ${CLUSTER_NAME} --project ${PROJECT_ID} \
 gcloud container clusters get-credentials ${CLUSTER_NAME} --zone ${CLUSTER_LOCATION} --project ${PROJECT_ID}
 
 openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
+ -subj "/CN=frontend.endpoints.${PROJECT}.cloud.goog/O=Edge2Mesh Inc" \
+ -keyout ${WORKDIR}/frontend.endpoints.${PROJECT}.cloud.goog.key \
+ -out ${WORKDIR}/frontend.endpoints.${PROJECT}.cloud.goog.crt
+
+openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 \
 -subj "/CN=frontend.endpoints.${PROJECT_ID}.cloud.goog/O=Edge2Mesh Inc" \
 -keyout tmp/frontend.endpoints.${PROJECT_ID}.cloud.goog.key \
 -out tmp/frontend.endpoints.${PROJECT_ID}.cloud.goog.crt
 
 kubectl -n asm-gateways create secret tls edge2mesh-credential \
 --key=tmp/frontend.endpoints.${PROJECT_ID}.cloud.goog.key \
---cert=tmp/frontend.endpoints.${PROJECT_ID}.cloud.goog.crt --context ${CLUSTER_NAME}
+--cert=tmp/frontend.endpoints.${PROJECT_ID}.cloud.goog.crt 
+
 
 echo "${CLUSTER_NAME} has been deployed and added to the Fleet."
 
