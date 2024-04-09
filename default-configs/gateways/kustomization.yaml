@@ -1,0 +1,12 @@
+namespace: asm-ingress
+resources:
+- ../base
+- role.yaml
+- rolebinding.yaml
+patches:
+- path: service-proto-type.yaml
+  target:
+    kind: Service
+- path: gateway.yaml
+  target:
+    kind: Gateway
