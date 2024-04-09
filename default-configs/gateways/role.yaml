@@ -3,8 +3,6 @@ kind: Role
 metadata:
   name: asm-ingress-gateway-sds
   namespace: asm-gateways
-  # annotations:
-  #   configmanagement.gke.io/cluster-selector: selector-prod
 rules:
 - apiGroups: [""]
   resources: ["secrets"]
@@ -15,12 +13,10 @@ kind: RoleBinding
 metadata:
   name: asm-ingress-gateway-sds
   namespace: asm-gateways
-  # annotations:
-  #   configmanagement.gke.io/cluster-selector: selector-prod
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: asm-ingressgateway-sds
+  name: asm-ingress-gateway-sds
 subjects:
   - kind: ServiceAccount
     name: asm-ingress-gateway
