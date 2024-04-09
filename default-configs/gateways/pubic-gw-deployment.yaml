@@ -62,7 +62,7 @@ metadata:
   namespace: asm-gateways
 spec:
   maxReplicas: 5
-  minReplicas: 3
+  minReplicas: 1
   metrics:
   - type: Resource
     resource:
