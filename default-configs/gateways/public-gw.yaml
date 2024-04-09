@@ -12,7 +12,7 @@ spec:
       name: https
       protocol: HTTPS
     hosts:
-    - '*' # IMPORTANT: Must use wildcard here when using SSL, see note below
+    - "*" # IMPORTANT: Must use wildcard here when using SSL, see note below
     tls:
       mode: SIMPLE
       credentialName: edge2mesh-credential
