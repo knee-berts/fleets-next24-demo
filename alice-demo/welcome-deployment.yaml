@@ -33,11 +33,12 @@ spec:
         app: welcome
     spec:
       containers:
-      - image: albertwo1978/welcome:latest
-        name: welcome
+      - image: albertwo1978/welcome-fnl:latest
+        name: welcome-fnl
         ports:
         - containerPort: 80
           name: web
+---
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
