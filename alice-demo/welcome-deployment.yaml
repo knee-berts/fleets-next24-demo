@@ -1,6 +1,3 @@
-# Reference: https://gist.github.com/sdenel/1bd2c8b5975393ababbcff9b57784e82 
-# Then in you browser: https://welcome.endpoints.fleet-dev-1.cloud.goog/ 
-
 apiVersion: v1
 kind: Service
 metadata:
