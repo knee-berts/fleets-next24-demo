@@ -3,8 +3,6 @@ kind: BackendConfig
 metadata:
   name: asm-ingress-xlb-config
   namespace: asm-gateways
-  # annotations:
-  #   configmanagement.gke.io/cluster-selector: selector-controller
 spec:
   healthCheck:
     requestPath: /healthz/ready
