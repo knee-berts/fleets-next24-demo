@@ -1,56 +1,56 @@
-kind: Gateway
-apiVersion: gateway.networking.k8s.io/v1beta1
-metadata:
-  name: welcome-http
-  namespace: asm-gateways
-  annotations:
-    networking.gke.io/certmap: welcome-cert-map
-spec:
-  gatewayClassName: gke-l7-global-external-managed-mc
-  listeners:
-  - name: http # list the port only so we can redirect any incoming http requests to https
-    protocol: HTTP
-    port: 80
-  - name: https
-    protocol: HTTPS
-    port: 443
-    allowedRoutes:
-      kinds:
-      - kind: HTTPRoute
-  addresses:
-  - type: NamedAddress
-    value: welcome-ip
----
-apiVersion: gateway.networking.k8s.io/v1beta1
-kind: HTTPRoute
-metadata:
-  name: welcome-httproute
-  namespace: asm-gateways
-spec:
-  parentRefs:
-  - name: welcome-http
-    namespace: asm-gateways
-    sectionName: https
-  rules:
-  - backendRefs:
-    - group: net.gke.io
-      kind: ServiceImport
-      name: asm-ingress-gateway-xlb
-      port: 443
----
-kind: HTTPRoute
-apiVersion: gateway.networking.k8s.io/v1beta1
-metadata:
-  name: http-to-https-welcome-redirect-httproute
-  namespace: asm-gateways
-spec:
-  parentRefs:
-  - name: welcome-http
-    namespace: asm-gateways
-    sectionName: http
-  rules:
-  - filters:
-    - type: RequestRedirect
-      requestRedirect:
-        scheme: https
-        statusCode: 301
+# kind: Gateway
+# apiVersion: gateway.networking.k8s.io/v1beta1
+# metadata:
+#   name: welcome-http
+#   namespace: asm-gateways
+#   annotations:
+#     networking.gke.io/certmap: welcome-cert-map
+# spec:
+#   gatewayClassName: gke-l7-global-external-managed-mc
+#   listeners:
+#   - name: http # list the port only so we can redirect any incoming http requests to https
+#     protocol: HTTP
+#     port: 80
+#   - name: https
+#     protocol: HTTPS
+#     port: 443
+#     allowedRoutes:
+#       kinds:
+#       - kind: HTTPRoute
+#   addresses:
+#   - type: NamedAddress
+#     value: welcome-ip
+# ---
+# apiVersion: gateway.networking.k8s.io/v1beta1
+# kind: HTTPRoute
+# metadata:
+#   name: welcome-httproute
+#   namespace: asm-gateways
+# spec:
+#   parentRefs:
+#   - name: welcome-http
+#     namespace: asm-gateways
+#     sectionName: https
+#   rules:
+#   - backendRefs:
+#     - group: net.gke.io
+#       kind: ServiceImport
+#       name: asm-ingress-gateway-xlb
+#       port: 443
+# ---
+# kind: HTTPRoute
+# apiVersion: gateway.networking.k8s.io/v1beta1
+# metadata:
+#   name: http-to-https-welcome-redirect-httproute
+#   namespace: asm-gateways
+# spec:
+#   parentRefs:
+#   - name: welcome-http
+#     namespace: asm-gateways
+#     sectionName: http
+#   rules:
+#   - filters:
+#     - type: RequestRedirect
+#       requestRedirect:
+#         scheme: https
+#         statusCode: 301
