@@ -35,6 +35,13 @@ spec:
         ports:
         - containerPort: 80
           name: web
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 2048Mi
+          requests:
+            cpu: 2000m
+            memory: 2048Mi
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
