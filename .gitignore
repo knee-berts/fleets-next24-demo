@@ -1,2 +1,3 @@
 tmp/
 dns-spec.yaml
+.kubeconfig

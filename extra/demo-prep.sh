@@ -67,3 +67,24 @@ gcloud certificate-manager maps entries create mcg-cert-map-entry --project ${PR
     --certificates="mcg-cert" \
     --hostname="frontend.endpoints.${PROJECT_ID}.cloud.goog"
 
+
+gcloud compute addresses create welcome-ip --global --project ${PROJECT_ID}
+
+export WELCOME_IP=$(gcloud compute addresses describe mcg-ip --project ${PROJECT_ID} --global --format "value(address)") 
+echo ${WELCOME_IP}
+
+cat <<EOF > ${WORKDIR}/welcome-dns-spec.yaml
+swagger: "2.0"
+info:
+  description: "Cloud Endpoints DNS"
+  title: "Cloud Endpoints DNS"
+  version: "1.0.0"
+paths: {}
+host: "welcome.endpoints.${PROJECT_ID}.cloud.goog"
+x-google-endpoints:
+- name: "welcome.endpoints.${PROJECT_ID}.cloud.goog"
+  target: "${WELCOME_IP}"
+EOF
+
+gcloud endpoints services deploy ${WORKDIR}/welcome-dns-spec.yaml --project ${PROJECT_ID}
+

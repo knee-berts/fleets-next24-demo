@@ -1,0 +1,10 @@
+swagger: "2.0"
+info:
+  description: "Cloud Endpoints DNS"
+  title: "Cloud Endpoints DNS"
+  version: "1.0.0"
+paths: {}
+host: "welcome.endpoints.fleet-dev-1.cloud.goog"
+x-google-endpoints:
+- name: "welcome.endpoints.fleet-dev-1.cloud.goog"
+  target: "34.49.116.72"
