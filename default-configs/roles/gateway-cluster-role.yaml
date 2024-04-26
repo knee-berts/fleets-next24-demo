@@ -3,7 +3,7 @@ kind: ClusterRole
 metadata:
   labels:
     rbac.authorization.k8s.io/aggregate-to-edit: "true"
-  name: custom:aggregate-to-edit:istio
+  name: custom:aggregate-to-edit:gateway
 rules:
 - apiGroups:
   - "networking.istio.io"
