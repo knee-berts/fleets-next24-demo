@@ -27,8 +27,7 @@ gcloud beta container clusters create ${CLUSTER_NAME} --project ${PROJECT_ID} \
   --location ${CLUSTER_LOCATION} \
   --no-enable-basic-auth \
   --gateway-api=standard \
-  --cluster-version "1.29.2-gke.1521000" \
-  --release-channel "rapid" \
+  --release-channel "regular" \
   --machine-type "e2-standard-4" \
   --image-type "COS_CONTAINERD" \
   --disk-type "pd-balanced" --disk-size "100" \
@@ -38,8 +37,6 @@ gcloud beta container clusters create ${CLUSTER_NAME} --project ${PROJECT_ID} \
   --logging=SYSTEM,WORKLOAD,API_SERVER,SCHEDULER,CONTROLLER_MANAGER \
   --monitoring=SYSTEM,API_SERVER,SCHEDULER,CONTROLLER_MANAGER,STORAGE,POD,DEPLOYMENT,STATEFULSET,DAEMONSET,HPA \
   --enable-private-nodes --enable-master-global-access --enable-ip-alias \
-  --network "projects/$PROJECT_ID/global/networks/default" \
-  --subnetwork "projects/$PROJECT_ID/regions/$CLUSTER_LOCATION/subnetworks/default" \
   --enable-intra-node-visibility --cluster-dns=clouddns --cluster-dns-scope=cluster \
   --default-max-pods-per-node "110" \
   --security-posture=standard --workload-vulnerability-scanning=enterprise \

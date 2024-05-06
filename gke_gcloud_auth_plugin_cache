@@ -1,6 +1,6 @@
 {
-    "current_context": "connectgateway_fleet-dev-1_us-east1_gke-dev-us-east1-02",
-    "access_token": "ya29.a0Ad52N3_zeaQhklHwfl5Uo_7eMhUfpVIa1QYNEG8iyATzmFKeRPgODB1yFy4oXNgJq9lvOilboWG9tTT8t6mtKnfhRuWQzVn6m3x626tYj4zdeg1zaD5_XE7AHussCtfb_xyhadjPKa4QZoI-a8QbB31ddaMQZPt3pootvviY_uYaCgYKAW4SARESFQHGX2MiKi0vdXcEJf6EGS7CO4EO5w0178",
-    "token_expiry": "2024-04-25T19:19:47Z",
+    "current_context": "connectgateway_fleet-dev-1_us-east1_gke-dev-us-east1-00",
+    "access_token": "ya29.a0AXooCgvMLec6tQh3-9Z_kNDJWuLGu12MaYYJCxgONLRrEbj8TbeYhrfXtryCZM_BGPxmZt5ET5QCoIzW8L6ir_78GbmKJOPA5DW7xWR6Tm9nafqB_gXzA5j5R4_UT0hvrhvQUubbw0rTJDiCZP9vZNYQwgB15_acPKYd7kBiehQaCgYKAeoSARESFQHGX2Mig14H_tkd9ajYq2qMplIlkA0178",
+    "token_expiry": "2024-05-01T20:10:04Z",
     "extra_args": ""
 }
