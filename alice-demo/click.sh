@@ -1,5 +1,5 @@
 https://auth.cloud.google/signin/locations/global/workforcePools/okta-idp/providers/okta-oidc-provider?continueUrl=https://console.cloud.google/
-
+raoul.duke@fnl.com
 cat okta-login.json 
 gcloud auth login --login-config=okta-login.json
 gcloud config list
