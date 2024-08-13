@@ -1,0 +1,68 @@
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: ClusterRole
+# metadata:
+#   name: asm-webhook-wait-job-role
+# rules:
+#   - apiGroups:
+#       - admissionregistration.k8s.io
+#     resources:
+#       - mutatingwebhookconfigurations
+#     verbs:
+#       - get
+# ---
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: ClusterRoleBinding
+# metadata:
+#   name: asm-webhook-wait-job-rolebinding
+# roleRef:
+#   apiGroup: rbac.authorization.k8s.io
+#   kind: ClusterRole
+#   name: asm-webhook-wait-job-role
+# subjects:
+#   - kind: ServiceAccount
+#     name: asm-webhook-wait-job-sa
+#     namespace: istio-system
+# ---
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#   name: asm-webhook-wait-job-sa
+#   namespace: istio-system
+# ---
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "1"
+#     argocd.argoproj.io/hook: Sync
+#     argocd.argoproj.io/hook-delete-policy: HookSucceeded
+#   name: asm-webhook-wait-job
+#   namespace: istio-system
+# spec:
+#   template:
+#     spec:
+#       containers:
+#         - image: bitnami/kubectl:1.24.3
+#           command:
+#             - /bin/bash
+#             - -c
+#             - |
+#               export HOME=/tmp/webhook-test
+#               echo ""
+#               echo -n "Waiting for the ASM MCP webhook to install."
+#               sleep $SLEEP
+#               until kubectl get mutatingwebhookconfigurations istiod-asm-managed
+#               do
+#                 echo -n "...still waiting for ASM MCP webhook creation"
+#                 sleep $SLEEP
+#               done
+#               echo "DONE"
+#           imagePullPolicy: Always
+#           name: asm-webhook-wait-job
+#           env:
+#           - name: SLEEP
+#             value: "5"
+#       dnsPolicy: ClusterFirst
+#       restartPolicy: OnFailure
+#       serviceAccountName: asm-webhook-wait-job-sa
+#       terminationGracePeriodSeconds: 30

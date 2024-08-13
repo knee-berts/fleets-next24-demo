@@ -10,9 +10,6 @@ gcloud services enable --project ${PROJECT_ID} \
   trafficdirector.googleapis.com \
   certificatemanager.googleapis.com
 
-gcloud container fleet mesh enable
-
-gcloud container fleet multi-cluster-services enable
 
 gcloud projects add-iam-policy-binding ${PROJECT_ID} --project ${PROJECT_ID} \
  --member "serviceAccount:${PROJECT_ID}.svc.id.goog[gke-mcs/gke-mcs-importer]" \
