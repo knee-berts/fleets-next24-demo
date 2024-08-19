@@ -2,6 +2,7 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: custom-metrics-gmp-hpa
+  namespace: inference
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

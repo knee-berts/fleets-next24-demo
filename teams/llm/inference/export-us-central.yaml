@@ -16,6 +16,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: llm-service-us-central1
+  namespace: inference
 spec:
   selector:
     app: gemma-server
@@ -24,11 +25,9 @@ spec:
   - protocol: TCP
     port: 8000
     targetPort: 8000
-
 ---
-
 kind: ServiceExport
 apiVersion: net.gke.io/v1
 metadata:
- namespace: llm
- name: llm-service-us-central1
+  namespace: inference
+  name: llm-service-us-central1

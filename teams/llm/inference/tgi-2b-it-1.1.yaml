@@ -16,6 +16,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tgi-gemma-deployment
+  namespace: inference
   labels: 
     app: gemma-server
 spec:

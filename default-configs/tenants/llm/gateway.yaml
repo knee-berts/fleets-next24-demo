@@ -16,7 +16,7 @@ kind: Gateway
 apiVersion: gateway.networking.k8s.io/v1beta1
 metadata:
   name: inference-external-http
-  namespace: llm
+  namespace: inference
 spec:
   gatewayClassName: gke-l7-global-external-managed-mc
   listeners:
