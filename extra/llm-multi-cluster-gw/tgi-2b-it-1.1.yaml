@@ -69,4 +69,4 @@ spec:
         emptyDir:
           medium: Memory
       nodeSelector:
-        cloud.google.com/gke-accelerator: GPU_ACCELERATOR_TYPE
+        cloud.google.com/gke-accelerator: nvidia-tesla-a100
