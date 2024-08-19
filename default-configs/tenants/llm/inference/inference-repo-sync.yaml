@@ -21,7 +21,7 @@ metadata:
     configmanagement.gke.io/namespace-selector: inference
 subjects:
 - kind: ServiceAccount
-  name: ns-reconciler-inference-inference-19
+  name: ns-reconciler-inference-inference-9
   namespace: config-management-system
 roleRef:
   kind: ClusterRole
