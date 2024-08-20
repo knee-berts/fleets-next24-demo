@@ -41,6 +41,8 @@ metadata:
 spec:
   parentRefs:
   - name: inference-external-http
+    namespace: inference
+    sectionName: http
   rules:
   - backendRefs:
     - group: net.gke.io
