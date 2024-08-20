@@ -30,12 +30,11 @@ spec:
     allowedRoutes:
       kinds:
       - kind: HTTPRoute
-
 ---
 kind: HTTPRoute
 apiVersion: gateway.networking.k8s.io/v1beta1
 metadata:
-  name: llm-route
+  name: inference-route
   namespace: inference
   labels:
     gateway: inference-external-http
@@ -48,13 +47,3 @@ spec:
       kind: ServiceImport
       name: llm-service-global
       port: 8000
-    # - group: net.gke.io
-    #   kind: ServiceImport
-    #   name: llm-service-us-east1
-    #   port: 8000
-    #   weight: 50
-    # - group: net.gke.io
-    #   kind: ServiceImport
-    #   name: llm-service-us-central1
-    #   port: 8000
-    #   weight: 50
