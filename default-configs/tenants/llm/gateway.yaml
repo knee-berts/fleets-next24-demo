@@ -16,36 +16,36 @@ kind: Namespace
 metadata:
   name: inference
 ---
-kind: Gateway
-apiVersion: gateway.networking.k8s.io/v1beta1
-metadata:
-  name: inference-external-http
-  namespace: inference
-spec:
-  gatewayClassName: gke-l7-global-external-managed-mc
-  listeners:
-  - name: http
-    protocol: HTTP
-    port: 80
-    allowedRoutes:
-      kinds:
-      - kind: HTTPRoute
----
-kind: HTTPRoute
-apiVersion: gateway.networking.k8s.io/v1beta1
-metadata:
-  name: inference-route
-  namespace: inference
-  labels:
-    gateway: inference-external-http
-spec:
-  parentRefs:
-  - name: inference-external-http
-    namespace: inference
-    sectionName: http
-  rules:
-  - backendRefs:
-    - group: net.gke.io
-      kind: ServiceImport
-      name: llm-service-global
-      port: 80
+# kind: Gateway
+# apiVersion: gateway.networking.k8s.io/v1beta1
+# metadata:
+#   name: inference-external-http
+#   namespace: inference
+# spec:
+#   gatewayClassName: gke-l7-global-external-managed-mc
+#   listeners:
+#   - name: http
+#     protocol: HTTP
+#     port: 80
+#     allowedRoutes:
+#       kinds:
+#       - kind: HTTPRoute
+# ---
+# kind: HTTPRoute
+# apiVersion: gateway.networking.k8s.io/v1beta1
+# metadata:
+#   name: inference-route
+#   namespace: inference
+#   labels:
+#     gateway: inference-external-http
+# spec:
+#   parentRefs:
+#   - name: inference-external-http
+#     namespace: inference
+#     sectionName: http
+#   rules:
+#   - backendRefs:
+#     - group: net.gke.io
+#       kind: ServiceImport
+#       name: llm-service-global
+#       port: 80
