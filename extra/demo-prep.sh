@@ -85,3 +85,6 @@ EOF
 
 gcloud endpoints services deploy ${WORKDIR}/welcome-dns-spec.yaml --project ${PROJECT_ID}
 
+gcloud projects add-iam-policy-binding projects/$PROJECT_ID \
+  --member "serviceAccount:${PROJECT_ID}.svc.id.goog[custom-metrics/custom-metrics-stackdriver-adapter]" \
+  --role roles/monitoring.viewer 
