@@ -11,9 +11,3 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 8000
----
-kind: ServiceExport
-apiVersion: net.gke.io/v1
-metadata:
- namespace: inference
- name: llm-service-global
