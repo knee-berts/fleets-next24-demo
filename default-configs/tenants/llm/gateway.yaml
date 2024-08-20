@@ -48,4 +48,4 @@ spec:
     - group: net.gke.io
       kind: ServiceImport
       name: llm-service-global
-      port: 8000
+      port: 80
