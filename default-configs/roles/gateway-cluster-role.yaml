@@ -6,8 +6,7 @@ metadata:
   name: custom:aggregate-to-edit:gateway
 rules:
 - apiGroups:
-  - "networking.istio.io"
-  - "security.istio.io"
+  - "net.gke.io"
   resources:
   - "*"
   verbs:
