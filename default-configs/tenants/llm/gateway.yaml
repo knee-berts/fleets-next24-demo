@@ -15,48 +15,48 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: inference
----
-kind: Gateway
-apiVersion: gateway.networking.k8s.io/v1beta1
-metadata:
-  name: inference-external-http
-  namespace: inference
-spec:
-  gatewayClassName: cc
-  listeners:
-  - name: http
-    protocol: HTTP
-    port: 80
-    allowedRoutes:
-      kinds:
-      - kind: HTTPRoute
----
-kind: HTTPRoute
-apiVersion: gateway.networking.k8s.io/v1beta1
-metadata:
-  name: inference-route
-  namespace: inference
-  labels:
-    gateway: inference-external-http
-spec:
-  parentRefs:
-  - name: inference-external-http
-    namespace: inference
-    sectionName: http
-  rules:
-  - backendRefs:
-    # - group: net.gke.io
-    #   kind: ServiceImport
-    #   name: llm-service-global
-    #   port: 80
-    #   weight: 0
-    - group: net.gke.io
-      kind: ServiceImport
-      name: llm-service-us-east1
-      port: 80
-      weight: 0
-    - group: net.gke.io
-      kind: ServiceImport
-      name: llm-service-us-central1
-      port: 80
-      weight: 100
+# ---
+# kind: Gateway
+# apiVersion: gateway.networking.k8s.io/v1beta1
+# metadata:
+#   name: inference-external-http
+#   namespace: inference
+# spec:
+#   gatewayClassName: cc
+#   listeners:
+#   - name: http
+#     protocol: HTTP
+#     port: 80
+#     allowedRoutes:
+#       kinds:
+#       - kind: HTTPRoute
+# ---
+# kind: HTTPRoute
+# apiVersion: gateway.networking.k8s.io/v1beta1
+# metadata:
+#   name: inference-route
+#   namespace: inference
+#   labels:
+#     gateway: inference-external-http
+# spec:
+#   parentRefs:
+#   - name: inference-external-http
+#     namespace: inference
+#     sectionName: http
+#   rules:
+#   - backendRefs:
+#     # - group: net.gke.io
+#     #   kind: ServiceImport
+#     #   name: llm-service-global
+#     #   port: 80
+#     #   weight: 0
+#     - group: net.gke.io
+#       kind: ServiceImport
+#       name: llm-service-us-east1
+#       port: 80
+#       weight: 0
+#     - group: net.gke.io
+#       kind: ServiceImport
+#       name: llm-service-us-central1
+#       port: 80
+#       weight: 100
