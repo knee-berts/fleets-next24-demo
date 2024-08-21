@@ -17,3 +17,5 @@ apiVersion: net.gke.io/v1
 metadata:
   namespace: inference
   name: llm-service-us-east1
+  annotations:
+    configsync.gke.io/cluster-name-selector: gke-dev-us-east1-01

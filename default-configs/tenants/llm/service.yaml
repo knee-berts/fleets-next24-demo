@@ -16,6 +16,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: llm-service-us-central1
+  annotations:
+    configsync.gke.io/cluster-name-selector: gke-dev-us-central1-00
 spec:
   selector:
     app: gemma-server
@@ -29,6 +31,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: llm-service-us-east1
+  annotations:
+    configsync.gke.io/cluster-name-selector: gke-dev-us-east1-01
 spec:
   selector:
     app: gemma-server
