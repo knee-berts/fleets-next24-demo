@@ -13,8 +13,8 @@
 # # limitations under the License.
 
 # ---
-# kind: ServiceExport
-# apiVersion: net.gke.io/v1
-# metadata:
-#   namespace: inference
-#   name: llm-service-us-central1
+kind: ServiceExport
+apiVersion: net.gke.io/v1
+metadata:
+  namespace: inference
+  name: llm-service-us-central1
