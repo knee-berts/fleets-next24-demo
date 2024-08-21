@@ -22,7 +22,7 @@ metadata:
   name: inference-external-http
   namespace: inference
 spec:
-  gatewayClassName: gke-l7-global-external-managed-mc
+  gatewayClassName: cc
   listeners:
   - name: http
     protocol: HTTP
@@ -54,9 +54,9 @@ spec:
       kind: ServiceImport
       name: llm-service-us-east1
       port: 80
-      weight: 50
+      weight: 0
     - group: net.gke.io
       kind: ServiceImport
       name: llm-service-us-central1
       port: 80
-      weight: 50
+      weight: 100
