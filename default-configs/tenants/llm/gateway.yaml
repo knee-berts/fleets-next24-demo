@@ -22,7 +22,7 @@ metadata:
   name: inference-external-http
   namespace: inference
 spec:
-  gatewayClassName: cc
+  gatewayClassName: gke-l7-global-external-managed-mc
   listeners:
   - name: http
     protocol: HTTP
