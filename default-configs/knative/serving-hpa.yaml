@@ -122,5 +122,3 @@ spec:
       targetPort: 8008
   selector:
     app: autoscaler-hpa
-
----

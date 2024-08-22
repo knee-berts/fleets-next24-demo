@@ -656,5 +656,3 @@ spec:
   selector:
     matchLabels:
       app: 3scale-kourier-gateway
-
----
