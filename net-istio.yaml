@@ -54,7 +54,7 @@ metadata:
     networking.knative.dev/ingress-provider: istio
 spec:
   selector:
-    istio: custom-gateway
+    istio: ingressgateway
   servers:
     - port:
         number: 80
