@@ -3,3 +3,9 @@ apiVersion: net.gke.io/v1
 metadata:
  namespace: inference
  name: llm-service-global
+---
+kind: ServiceExport
+apiVersion: net.gke.io/v1
+metadata:
+ namespace: kourier-system
+ name: kourier-internal
