@@ -64,7 +64,7 @@ spec:
           name: dshm
         ports:
         - name: web
-          containerPort: 8000
+          containerPort: 8080
       volumes:
       - name: dshm
         emptyDir:
