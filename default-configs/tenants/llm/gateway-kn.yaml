@@ -14,13 +14,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: inference
+  name: kourier-system
 ---
 kind: Gateway
 apiVersion: gateway.networking.k8s.io/v1beta1
 metadata:
-  name: inference-external-http
-  namespace: inference
+  name: kn-inference-external-http
+  namespace: kourier-system
 spec:
   gatewayClassName: gke-l7-global-external-managed-mc
   listeners:
@@ -34,34 +34,25 @@ spec:
 kind: HTTPRoute
 apiVersion: gateway.networking.k8s.io/v1beta1
 metadata:
-  name: inference-route
-  namespace: inference
+  name: kn-inference-route
+  namespace: kourier-system
   labels:
-    gateway: inference-external-http
+    gateway: kn-inference-external-http
 spec:
   parentRefs:
-  - name: inference-external-http
-    namespace: inference
+  - name: kn-inference-external-http
+    namespace: kourier-system
     sectionName: http
   rules:
   - backendRefs:
-    # - group: net.gke.io
-    #   kind: ServiceImport
-    #   name: llm-service-global
-    #   port: 80
-    #   weight: 0
-    # - group: net.gke.io
-    #   kind: ServiceImport
-    #   name: llm-service-us-east1
-    #   port: 80
-    #   weight: 50
-    # - group: net.gke.io
-    #   kind: ServiceImport
-    #   name: llm-service-us-central1
-    #   port: 80
-    #   weight: 50
     - group: net.gke.io
       kind: ServiceImport
       name: kourier-internal
       port: 80
       weight: 100
+---
+kind: ServiceExport
+apiVersion: net.gke.io/v1
+metadata:
+ namespace: kourier-system
+ name: kourier-internal
