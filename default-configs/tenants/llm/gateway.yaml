@@ -45,18 +45,23 @@ spec:
     sectionName: http
   rules:
   - backendRefs:
-    # - group: net.gke.io
-    #   kind: ServiceImport
-    #   name: llm-service-global
-    #   port: 80
-    #   weight: 0
+    - group: net.gke.io
+      kind: ServiceImport
+      name: llm-service-global
+      port: 80
+      weight: 0
     - group: net.gke.io
       kind: ServiceImport
       name: llm-service-us-east1
       port: 80
-      weight: 50
+      weight: 34
     - group: net.gke.io
       kind: ServiceImport
       name: llm-service-us-central1
       port: 80
-      weight: 50
+      weight: 33
+    - group: net.gke.io
+      kind: ServiceImport
+      name: llm-service-us-east4
+      port: 80
+      weight: 33
