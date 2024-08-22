@@ -56,3 +56,33 @@ apiVersion: net.gke.io/v1
 metadata:
  namespace: kourier-system
  name: kourier-internal
+---
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: kn-config
+  namespace: kourier-system
+spec:
+  healthCheck:
+    requestPath: /ready
+    port: 8080
+    type: HTTP
+---
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  name: kn-gateway-healthcheck
+  namespace: kourier-system
+spec:
+  default:
+    config:
+      httpHealthCheck:
+        port: 8080
+        portSpecification: USE_FIXED_PORT
+        requestPath: /ready
+      type: HTTP
+  targetRef:
+    group: net.gke.io
+    kind: ServiceImport
+    name: kourier-internal
+    namespace: kourier-system
