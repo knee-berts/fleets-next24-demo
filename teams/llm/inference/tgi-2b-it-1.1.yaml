@@ -41,7 +41,7 @@ spec:
             memory: "128Mi"
         env:
         - name: METRICS_ENDPOINT 
-          value: "http://localhost:8000/metrics" # Or wherever your metrics are exposed
+          value: "http://localhost:8080/metrics" # Or wherever your metrics are exposed
         - name: QUEUE_DEPTH_THRESHOLD
           value: "10" 
         - name: APP_PORT
