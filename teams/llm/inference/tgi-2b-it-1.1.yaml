@@ -51,12 +51,12 @@ spec:
           containerPort: 8081
       - name: inference-server
         image: us-docker.pkg.dev/vertex-ai/vertex-vision-model-garden-dockers/pytorch-hf-tgi-serve:20240328_0936_RC01
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8081 # Port the llm-healthchecker is listening on
-          initialDelaySeconds: 60 # Delay before first probe
-          periodSeconds: 10           
+        # readinessProbe:
+        #   httpGet:
+        #     path: /health
+        #     port: 8081 # Port the llm-healthchecker is listening on
+        #   initialDelaySeconds: 60 # Delay before first probe
+        #   periodSeconds: 10           
         resources:
           requests:
             cpu: "2"
