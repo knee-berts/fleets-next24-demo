@@ -41,7 +41,7 @@ spec:
             memory: "128Mi"
         env:
         - name: METRICS_ENDPOINT 
-          value: "http://localhost:8080/metrics" # Or wherever your metrics are exposed
+          value: "http://localhost:8082/metrics" # Or wherever your metrics are exposed
         - name: QUEUE_DEPTH_THRESHOLD
           value: "10" 
         - name: APP_PORT
@@ -87,6 +87,8 @@ spec:
         ports:
         - name: web
           containerPort: 8080
+        - name: ts-metrics
+          containerPort: 8082
       volumes:
       - name: dshm
         emptyDir:
