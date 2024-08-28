@@ -55,7 +55,7 @@ spec:
           httpGet:
             path: /health
             port: 8081 # Port the llm-healthchecker is listening on
-          initialDelaySeconds: 5 # Delay before first probe
+          initialDelaySeconds: 60 # Delay before first probe
           periodSeconds: 10           
         resources:
           requests:
