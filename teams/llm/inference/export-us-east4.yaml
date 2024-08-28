@@ -23,7 +23,7 @@ metadata:
 apiVersion: v1
 kind: Service
 metadata:
-  name: llm-service-us-east1
+  name: llm-service-us-east4
   annotations:
     configsync.gke.io/cluster-name-selector: gke-dev-us-east4-00
   selector:
