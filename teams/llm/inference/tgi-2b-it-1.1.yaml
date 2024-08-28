@@ -54,7 +54,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /health
-            port: 8080 # Port the llm-healthchecker is listening on
+            port: 8081 # Port the llm-healthchecker is listening on
           initialDelaySeconds: 5 # Delay before first probe
           periodSeconds: 10           
         resources:
