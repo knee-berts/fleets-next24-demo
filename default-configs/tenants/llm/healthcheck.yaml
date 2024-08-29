@@ -14,5 +14,5 @@ spec:
   targetRef:
     group: net.gke.io
     kind: ServiceImport
-    name: inference-external-http
+    name: llm-service-global
     namespace: inference
