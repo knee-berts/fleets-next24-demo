@@ -60,8 +60,8 @@ spec:
       name: llm-service-us-central1
       port: 80
       weight: 0
-    - group: net.gke.io
-      kind: ServiceImport
-      name: llm-service-us-east4
-      port: 80
-      weight: 0
+    # - group: net.gke.io
+    #   kind: ServiceImport
+    #   name: llm-service-us-east4
+    #   port: 80
+    #   weight: 0
