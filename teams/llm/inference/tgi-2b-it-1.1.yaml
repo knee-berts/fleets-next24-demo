@@ -41,7 +41,7 @@ spec:
             cpu: "100m"
             memory: "128Mi"
       - name: llm-healthcheck 
-        image: us-docker.pkg.dev/fleet-dev-1/llm-healthcheck/llm-healthcheck-v0.0.9
+        image: us-docker.pkg.dev/fleet-dev-1/llm-healthcheck/llm-healthcheck-v0.0.10
         resources:
           requests:
             cpu: "100m"
