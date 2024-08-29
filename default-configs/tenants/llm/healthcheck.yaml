@@ -5,6 +5,8 @@ metadata:
   namespace: inference
 spec:
   default:
+    healthyThreshold: 10
+    unhealthyThreshold: 1  
     config:
       httpHealthCheck:
         port: 15021
