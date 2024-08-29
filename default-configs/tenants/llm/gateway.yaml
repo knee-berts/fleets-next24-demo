@@ -49,19 +49,19 @@ spec:
       kind: ServiceImport
       name: llm-service-global
       port: 80
-      weight: 0
+      weight: 100
     - group: net.gke.io
       kind: ServiceImport
       name: llm-service-us-east1
       port: 80
-      weight: 34
+      weight: 0
     - group: net.gke.io
       kind: ServiceImport
       name: llm-service-us-central1
       port: 80
-      weight: 33
+      weight: 0
     - group: net.gke.io
       kind: ServiceImport
       name: llm-service-us-east4
       port: 80
-      weight: 33
+      weight: 0

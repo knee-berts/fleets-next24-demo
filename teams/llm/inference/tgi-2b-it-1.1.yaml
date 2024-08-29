@@ -48,10 +48,10 @@ spec:
             memory: "128Mi"
         env:
         - name: METRICS_ENDPOINT 
-          value: "http://localhost:8080/metrics" # Or wherever your metrics are exposed
+          value: "http://localhost:8080/metrics" 
         - name: METRICS_THRESHOLD
           value: "10"
-        - name: METRIC_TO_CHECK # New environment variable
+        - name: METRIC_TO_CHECK 
           value: "tgi_queue_size" 
         - name: APP_PORT
           value: "8081" 
