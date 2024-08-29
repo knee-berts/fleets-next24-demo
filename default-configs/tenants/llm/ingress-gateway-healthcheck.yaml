@@ -1,0 +1,18 @@
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  name: llm-gateway-healthcheck
+  namespace: inference
+spec:
+  default:
+    config:
+      httpHealthCheck:
+        port: 8081
+        portSpecification: USE_FIXED_PORT
+        requestPath: /health
+      type: HTTP
+  targetRef:
+    group: net.gke.io
+    kind: ServiceImport
+    name: inference-external-http
+    namespace: inference

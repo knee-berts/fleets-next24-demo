@@ -8,6 +8,12 @@ spec:
     app: gemma-server
   type: ClusterIP
   ports:
-  - protocol: TCP
+  - name: http
     port: 80
     targetPort: 8080
+    appProtocol: HTTP
+  - name: health
+    protocol: TCP
+    port: 15021
+    targetPort: 15021
+    appProtocol: HTTP
