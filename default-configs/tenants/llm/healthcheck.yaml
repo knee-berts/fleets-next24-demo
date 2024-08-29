@@ -7,7 +7,7 @@ spec:
   default:
     config:
       httpHealthCheck:
-        port: 8081
+        port: 15021
         portSpecification: USE_FIXED_PORT
         requestPath: /health
       type: HTTP
