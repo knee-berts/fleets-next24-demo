@@ -104,5 +104,5 @@ spec:
       - name: dshm
         emptyDir:
           medium: Memory
-      nodeSelector:
-        cloud.google.com/gke-accelerator: nvidia-tesla-a100
+      # nodeSelector:
+      #   cloud.google.com/gke-accelerator: nvidia-tesla-a100
