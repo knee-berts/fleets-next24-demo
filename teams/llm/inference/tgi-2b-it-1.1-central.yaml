@@ -51,7 +51,7 @@ spec:
         env:
         - name: METRICS_ENDPOINT 
           value: "http://localhost:8080/metrics" 
-        - name: METRICS_THRESHOLD
+        - name: METRIC_THRESHOLD
           value: "100"
         - name: METRIC_TO_CHECK 
           value: "tgi_queue_size" 
