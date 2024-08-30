@@ -17,9 +17,11 @@
 # metadata:
 #   name: tgi-gemma-deployment
 #   namespace: inference
+#   annotations:
+#     configsync.gke.io/cluster-name-selector: gke-dev-us-central1-01
 #   labels: 
 #     app: gemma-server
-# spec:
+# spec: 
 #   replicas: 1
 #   selector:
 #     matchLabels:
@@ -50,7 +52,7 @@
 #         - name: METRICS_ENDPOINT 
 #           value: "http://localhost:8080/metrics" 
 #         - name: METRICS_THRESHOLD
-#           value: "15"
+#           value: "100"
 #         - name: METRIC_TO_CHECK 
 #           value: "tgi_queue_size" 
 #         - name: APP_PORT
