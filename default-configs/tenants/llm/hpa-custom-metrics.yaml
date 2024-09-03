@@ -24,15 +24,12 @@ spec:
     scaleDown:
       stabilizationWindowSeconds: 0
       policies:
-      - type: Percent
-        value: 100
+      - type: Pods
+        value: 1
         periodSeconds: 300
     scaleUp:
       stabilizationWindowSeconds: 0
       policies:
-      - type: Percent
-        value: 100
-        periodSeconds: 1
       - type: Pods
         value: 4
-        periodSeconds: 1    
+        periodSeconds: 30   
