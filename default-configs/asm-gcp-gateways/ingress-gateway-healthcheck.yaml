@@ -3,6 +3,8 @@ kind: HealthCheckPolicy
 metadata:
   name: ingress-gateway-healthcheck
   namespace: asm-gateways
+  annotations:
+    configsync.gke.io/cluster-name-selector: gke-dev-us-central1-01
 spec:
   default:
     config:

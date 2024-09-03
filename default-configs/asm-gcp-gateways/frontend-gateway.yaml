@@ -5,6 +5,7 @@ metadata:
   namespace: asm-gateways
   annotations:
     networking.gke.io/certmap: mcg-cert-map
+    configsync.gke.io/cluster-name-selector: gke-dev-us-central1-01
 spec:
   gatewayClassName: gke-l7-global-external-managed-mc
   listeners:
