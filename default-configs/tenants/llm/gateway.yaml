@@ -22,7 +22,7 @@ metadata:
   name: inference-external-http
   namespace: inference
   annotations:
-    configsync.gke.io/cluster-name-selector: gke-dev-us-central1-00
+    configsync.gke.io/cluster-name-selector: gke-dev-us-central1-01
 spec:
   gatewayClassName: gke-l7-global-external-managed-mc
   listeners:
@@ -39,7 +39,7 @@ metadata:
   name: inference-route
   namespace: inference
   annotations:
-    configsync.gke.io/cluster-name-selector: gke-dev-us-central1-00
+    configsync.gke.io/cluster-name-selector: gke-dev-us-central1-01
   labels:
     gateway: inference-external-http
 spec:
