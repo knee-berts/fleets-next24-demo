@@ -7,7 +7,7 @@ metadata:
     configsync.gke.io/cluster-name-selector: gke-dev-us-central1-01
 spec:
   default:
-    # checkIntervalSec: 10
+    checkIntervalSec: 15
     healthyThreshold: 10
     unhealthyThreshold: 1  
     config:
