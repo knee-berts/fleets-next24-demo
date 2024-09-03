@@ -4,7 +4,7 @@ metadata:
   name: llm-gateway-healthcheck
   namespace: inference
   annotations:
-    configsync.gke.io/cluster-name-selector: gke-dev-us-central1-00
+    configsync.gke.io/cluster-name-selector: gke-dev-us-central1-01
 spec:
   default:
     # checkIntervalSec: 10
