@@ -19,7 +19,7 @@ spec:
         name: prometheus.googleapis.com|tgi_queue_size|gauge
       target:
         type: AverageValue
-        averageValue: 1
+        averageValue: 15
   behavior:
     scaleDown:
       stabilizationWindowSeconds: 300
@@ -28,13 +28,13 @@ spec:
         value: 100
         periodSeconds: 15
     scaleUp:
-      stabilizationWindowSeconds: 300
+      stabilizationWindowSeconds: 0
       policies:
       - type: Percent
         value: 100
-        periodSeconds: 15
+        periodSeconds: 1
       - type: Pods
         value: 4
-        periodSeconds: 15
+        periodSeconds: 1
       selectPolicy: Max
     
