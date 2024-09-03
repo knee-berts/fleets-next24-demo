@@ -5,7 +5,7 @@ metadata:
   namespace: inference
 spec:
   default:
-    checkIntervalSec: 30
+    checkIntervalSec: 15
     healthyThreshold: 10
     unhealthyThreshold: 1  
     config:
