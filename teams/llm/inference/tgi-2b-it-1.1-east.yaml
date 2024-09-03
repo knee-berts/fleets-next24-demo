@@ -48,6 +48,9 @@ spec:
           requests:
             cpu: "100m"
             memory: "128Mi"
+          limits:
+            cpu: "100m"
+            memory: "128Mi"
         env:
         - name: METRICS_ENDPOINT 
           value: "http://localhost:8080/metrics" 
