@@ -31,5 +31,5 @@ spec:
       stabilizationWindowSeconds: 0
       policies:
       - type: Pods
-        value: 4
-        periodSeconds: 30   
+        value: 2
+        periodSeconds: 0   
