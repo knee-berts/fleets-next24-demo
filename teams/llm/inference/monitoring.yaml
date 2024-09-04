@@ -23,7 +23,7 @@ spec:
   endpoints:
   - port: web
     scheme: http
-    interval: 10s
+    interval: 300s
     path: /metrics
   selector:
     matchLabels:
