@@ -8,7 +8,7 @@ metadata:
 spec:
   default:
     checkIntervalSec: 15
-    healthyThreshold: 20
+    healthyThreshold: 10
     unhealthyThreshold: 1  
     config:
       httpHealthCheck:
