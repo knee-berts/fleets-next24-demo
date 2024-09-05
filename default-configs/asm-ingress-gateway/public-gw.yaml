@@ -17,4 +17,28 @@ spec:
     - '*' # IMPORTANT: Must use wildcard here when using SSL, see note below
     tls:
       mode: SIMPLE
-      credentialName: edge2mesh-credential
+      serverCertificate: "/var/secrets/edge2mesh-credential.crt"
+      privateKey: "/var/secrets/edge2mesh-credential.key"
+    volumeMounts:
+      - mountPath: "/var/secrets"
+        name: certs
+volumes:
+  - name: cert
+    csi:
+      driver: secrets-store-gke.csi.k8s.io
+      readOnly: true
+      volumeAttributes:
+        secretProviderClass: asm-gateway-ss-cert
+---
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: asm-gateway-ss-cert
+spec:
+  provider: gke
+  parameters:
+    secrets: |
+      - resourceName: "projects/fleet-dev-1/secrets/edge2mesh-credential-crt/versions/1"
+        path: "edge2mesh-credential.crt"    
+      - resourceName: "projects/fleet-dev-1/secrets/edge2mesh-credential-key/versions/1"
+        path: "edge2mesh-credential.key"
