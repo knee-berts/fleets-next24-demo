@@ -89,6 +89,10 @@ gcloud projects add-iam-policy-binding projects/$PROJECT_ID \
   --member "serviceAccount:${PROJECT_ID}.svc.id.goog[custom-metrics/custom-metrics-stackdriver-adapter]" \
   --role roles/monitoring.viewer 
 
-gcloud secrets add-iam-policy-binding SECRET_NAME \
+gcloud secrets add-iam-policy-binding edge2mesh-credential-crt \
+  --member "serviceAccount:${PROJECT_ID}.svc.id.goog[asm-gateways/asm-ingress-gateway]" \
+  --role=roles/secretmanager.secretAccessor 
+
+gcloud secrets add-iam-policy-binding edge2mesh-credential-key \
   --member "serviceAccount:${PROJECT_ID}.svc.id.goog[asm-gateways/asm-ingress-gateway]" \
   --role=roles/secretmanager.secretAccessor 
