@@ -68,3 +68,5 @@ kubectl -n asm-gateways create secret tls edge2mesh-credential \
 
 echo "${CLUSTER_NAME} has been deployed and added to the Fleet."
 
+
+gcloud container clusters update gke-dev-us-central1-01 --enable-autoprovisioning --autoprovisioning-config-file extra/nap.yaml --region us-central1 --project fleet-dev-1

@@ -1,0 +1,17 @@
+resourceLimits:
+  - resourceType: 'cpu'
+    minimum: 4
+    maximum: 1024
+  - resourceType: 'memory'
+    maximum: 1024
+  - resourceType: 'nvidia-l4'
+    maximum: 4
+management:
+  autoRepair: true
+  autoUpgrade: true
+diskSizeGb: 200
+autoprovisioningLocations:
+  - us-central1-a
+  - us-central1-b
+  - us-central1-c 
+  - us-central1-f
