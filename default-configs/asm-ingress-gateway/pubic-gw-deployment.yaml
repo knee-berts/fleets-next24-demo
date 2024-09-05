@@ -48,12 +48,35 @@ spec:
               - all
           privileged: false
           readOnlyRootFilesystem: true
+        volumeMounts:
+          - mountPath: "/var/secrets"
+            name: certs
       securityContext:
         fsGroup: 1337
         runAsGroup: 1337
         runAsNonRoot: true
         runAsUser: 1337
       serviceAccountName: asm-ingress-gateway
+volumes:
+  - name: cert
+    csi:
+      driver: secrets-store-gke.csi.k8s.io
+      readOnly: true
+      volumeAttributes:
+        secretProviderClass: asm-gateway-ss-cert
+---
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: asm-gateway-ss-cert
+spec:
+  provider: gke
+  parameters:
+    secrets: |
+      - resourceName: "projects/fleet-dev-1/secrets/edge2mesh-credential-crt/versions/1"
+        path: "edge2mesh-credential.crt"    
+      - resourceName: "projects/fleet-dev-1/secrets/edge2mesh-credential-key/versions/1"
+        path: "edge2mesh-credential.key"
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
