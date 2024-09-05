@@ -58,7 +58,7 @@ spec:
         runAsUser: 1337
       serviceAccountName: asm-ingress-gateway
       volumes:
-        - name: cert
+        - name: certs
           csi:
             driver: secrets-store-gke.csi.k8s.io
             readOnly: true
