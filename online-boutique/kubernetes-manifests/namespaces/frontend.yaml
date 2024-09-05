@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata: # kpt-merge: /frontend
-  name: frontend
-  annotations:
-    internal.kpt.dev/upstream-identifier: '|Namespace|default|frontend'
