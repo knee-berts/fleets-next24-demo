@@ -14,3 +14,8 @@ autoprovisioningLocations:
   - us-east1-d
   - us-east1-b
   - us-east1-c 
+scopes: 
+  - https://www.googleapis.com/auth/logging.write
+  - https://www.googleapis.com/auth/monitoring
+  - https://www.googleapis.com/auth/devstorage.read_only
+  - https://www.googleapis.com/auth/compute
