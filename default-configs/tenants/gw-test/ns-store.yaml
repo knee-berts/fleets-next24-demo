@@ -4,5 +4,5 @@ metadata:
   name: store
   annotations:
     configsync.gke.io/cluster-name-selector: gke-dev-us-central1-01
-  labels:
-    shared-gateway-access: "true"
+  # labels:
+  #   shared-gateway-access: "true"
