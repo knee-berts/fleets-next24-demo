@@ -91,5 +91,5 @@ spec:
       - name: dshm
         emptyDir:
           medium: Memory
-      nodeSelector:
-        cloud.google.com/gke-accelerator: nvidia-l4
+      # nodeSelector:
+      #   cloud.google.com/gke-accelerator: nvidia-l4
