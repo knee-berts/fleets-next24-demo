@@ -57,15 +57,7 @@ spec:
         - name: healthcheck
           containerPort: 15021
       - name: inference-server
-        image: us-docker.pkg.dev/vertex-ai/vertex-vision-model-garden-dockers/pytorch-hf-tgi-serve:20240328_0936_RC01
-        # readinessProbe:
-        #   httpGet:
-        #     path: /health
-        #     port: 15021 # Port the llm-healthchecker is listening on
-        #   failureThreshold: 2
-        #   successThreshold: 2
-        #   initialDelaySeconds: 20 # Delay before first probe
-        #   periodSeconds: 5           
+        image: us-docker.pkg.dev/vertex-ai/vertex-vision-model-garden-dockers/pytorch-hf-tgi-serve:20240328_0936_RC01        
         resources:
           requests:
             cpu: "2"
