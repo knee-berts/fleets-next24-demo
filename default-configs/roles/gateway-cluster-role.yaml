@@ -7,6 +7,7 @@ metadata:
 rules:
 - apiGroups:
   - "net.gke.io"
+  - "gateway.networking.k8s.io"
   resources:
   - "*"
   verbs:
