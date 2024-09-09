@@ -18,7 +18,7 @@ metadata:
   name: tgi-gemma-deployment
   namespace: inference
   annotations:
-    configsync.gke.io/cluster-name-selector: gke-dev-us-east1-00,gke-dev-us-east1-01
+    configsync.gke.io/cluster-name-selector: gke-dev-us-east1-01
   labels: 
     app: gemma-server
 spec:
