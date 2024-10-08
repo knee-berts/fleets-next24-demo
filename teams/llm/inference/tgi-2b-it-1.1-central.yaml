@@ -22,7 +22,7 @@ metadata:
   labels: 
     app: gemma-server
 spec: 
-  replicas: 1
+  # replicas: 1
   selector:
     matchLabels:
       app: gemma-server
