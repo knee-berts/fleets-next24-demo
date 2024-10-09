@@ -18,7 +18,7 @@ spec:
         name: prometheus.googleapis.com|tgi_queue_size|gauge
       target:
         type: AverageValue
-        averageValue: 5
+        averageValue: 10
   # behavior:
   #   scaleDown:
   #     stabilizationWindowSeconds: 100
