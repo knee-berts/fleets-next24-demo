@@ -48,7 +48,7 @@ spec:
         - name: METRICS_ENDPOINT 
           value: "http://localhost:8080/metrics" 
         - name: METRIC_THRESHOLD
-          value: "10"
+          value: "30"
         - name: METRIC_TO_CHECK 
           value: "tgi_queue_size" 
         - name: APP_PORT
