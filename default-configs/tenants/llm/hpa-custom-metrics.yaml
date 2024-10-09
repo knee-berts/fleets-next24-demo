@@ -4,8 +4,6 @@ metadata:
   name: custom-metrics-gmp-hpa
   namespace: inference
   annotations:
-    configsync.gke.io/cluster-name-selector: gke-dev-us-central1-00,gke-dev-us-central1-01
-    # configsync.gke.io/cluster-name-selector: gke-std-dev-us-east1-00,gke-ap-dev-us-west1-00
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
