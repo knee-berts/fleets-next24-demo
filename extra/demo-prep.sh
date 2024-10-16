@@ -96,3 +96,7 @@ gcloud secrets add-iam-policy-binding edge2mesh-credential-crt \
 gcloud secrets add-iam-policy-binding edge2mesh-credential-key \
   --member "serviceAccount:${PROJECT_ID}.svc.id.goog[asm-gateways/asm-ingress-gateway]" \
   --role=roles/secretmanager.secretAccessor 
+
+gcloud projects add-iam-policy-binding projects/$GKE_PROJECT_ID \
+  --member "serviceAccount:${GKE_PROJECT_ID}.svc.id.goog[config-management-system/root-reconciler]" \
+  --role=roles/source.reader 
