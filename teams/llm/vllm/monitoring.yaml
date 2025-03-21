@@ -15,10 +15,10 @@
 apiVersion: monitoring.googleapis.com/v1
 kind: PodMonitoring
 metadata:
-  name: llm-prometheus
+  name: vllm-prometheus
   namespace: inference
   labels:
-    app.kubernetes.io/name: llm-prometheus
+    app.kubernetes.io/name: vllm-prometheus
 spec:
   endpoints:
   - port: web
