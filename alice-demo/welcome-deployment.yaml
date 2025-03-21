@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: welcome
+  namespace: welcome
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: welcome
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: welcome
+  namespace: welcome
+spec:
+  selector:
+    matchLabels:
+      app: welcome
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: welcome
+    spec:
+      containers:
+      - image: albertwo1978/welcome-fnl:latest
+        name: welcome-fnl
+        ports:
+        - containerPort: 80
+          name: web
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 2048Mi
+          requests:
+            cpu: 2000m
+            memory: 2048Mi
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: welcome
+  namespace: welcome
+spec:
+  host: welcome.welcome.svc.cluster.local
+  trafficPolicy:
+    connectionPool:
+      http:
+        maxRequestsPerConnection: 0
+    loadBalancer:
+      simple: LEAST_REQUEST
+      localityLbSetting:
+        enabled: true
+        failover:
+          - from: us-east1
+            to: us-central1
+          - from: us-central1
+            to: us-east1
+    outlierDetection:
+      consecutive5xxErrors: 1
+      interval: 1s
+      baseEjectionTime: 1m
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: welcome
+  namespace: welcome
+spec:
+  gateways:
+  - asm-gateways/asm-ingress-gateway-xlb
+  hosts:
+  - 'welcome.endpoints.fleet-dev-1.cloud.goog'
+  http:
+  - route:
+    - destination:
+        host: welcome
+        port:
+          number: 80

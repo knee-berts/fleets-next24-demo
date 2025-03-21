@@ -1,0 +1,10 @@
+{
+  "loggingConfig": {
+      "defaultConfig": {
+          "mode": "COPY"
+      },
+      "fleetScopeLogsConfig": {
+          "mode": "MOVE"
+      }
+  }
+}

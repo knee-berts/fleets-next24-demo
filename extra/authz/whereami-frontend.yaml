@@ -1,0 +1,17 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+ name: frontend
+ namespace: frontend
+spec:
+  selector:
+    matchLabels:
+      app: whereami-frontend
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: [ "mesh-demo-01.svc.id.goog/ns/asm-ingress/sa/asm-ingressgateway" ]
+  - to:
+    - operation:
+        methods: ["GET"]

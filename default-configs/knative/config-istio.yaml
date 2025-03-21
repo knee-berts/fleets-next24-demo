@@ -1,0 +1,299 @@
+# apiVersion: v1
+# items:
+# - apiVersion: operand.run.cloud.google.com/v1alpha1
+#   kind: ActiveOperand
+#   metadata:
+#     creationTimestamp: "2024-08-22T14:44:58Z"
+#     generation: 1
+#     name: sha256-5642987b55
+#     namespace: istio-system
+#     resourceVersion: "11875244"
+#     uid: 65bfbcc0-162f-4eaf-a5ec-3759318c17fd
+#   spec:
+#     live:
+#     - group: ""
+#       kind: Service
+#       name: knative-local-gateway
+#       namespace: istio-system
+#       resource: ""
+#       version: ""
+#     - group: networking.istio.io
+#       kind: EnvoyFilter
+#       name: allowconnect-cluster-local-gateway
+#       namespace: istio-system
+#       resource: ""
+#       version: ""
+#   status:
+#     conditions:
+#     - lastTransitionTime: "2024-08-22T14:46:35Z"
+#       status: "True"
+#       type: OwnerRefInjected
+#     - lastTransitionTime: "2024-08-22T14:46:35Z"
+#       status: "True"
+#       type: Ready
+#     observedGeneration: 1
+# - apiVersion: operand.run.cloud.google.com/v1alpha1
+#   kind: ActiveOperand
+#   metadata:
+#     creationTimestamp: "2024-08-22T15:18:20Z"
+#     generation: 1
+#     name: sha256-5642987b55
+#     namespace: knative-serving
+#     resourceVersion: "12150381"
+#     uid: cf5856f0-46dc-4ae8-87da-588a02f74210
+#   spec:
+#     live:
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-autoscaler
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-cloudrun
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-cr-tls
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-defaults
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-deployment
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-domain
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-domainmapping
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-features
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-gc
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-istio
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-leader-election
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-logging
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-network
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-observability
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ConfigMap
+#       name: config-tracing
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: Secret
+#       name: knative-serving-certs
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: Secret
+#       name: serving-certs-ctrl-ca
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: Secret
+#       name: webhook-certs
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: Service
+#       name: activator-service
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: Service
+#       name: autoscaler
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: Service
+#       name: controller
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: Service
+#       name: webhook
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: ServiceAccount
+#       name: controller
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: apps
+#       kind: Deployment
+#       name: activator
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: apps
+#       kind: Deployment
+#       name: autoscaler
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: apps
+#       kind: Deployment
+#       name: controller
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: apps
+#       kind: Deployment
+#       name: webhook
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: autoscaling
+#       kind: HorizontalPodAutoscaler
+#       name: activator
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: batch
+#       kind: Job
+#       name: delete-config-istio-webhook
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: batch
+#       kind: Job
+#       name: storage-version-migration-serving
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: caching.internal.knative.dev
+#       kind: Image
+#       name: queue-proxy
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: networking.istio.io
+#       kind: Gateway
+#       name: knative-ingress-gateway
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: networking.istio.io
+#       kind: Gateway
+#       name: knative-local-gateway
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: security.istio.io
+#       kind: PeerAuthentication
+#       name: webhook
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#   status:
+#     conditions:
+#     - lastTransitionTime: "2024-08-22T19:34:02Z"
+#       status: "True"
+#       type: OwnerRefInjected
+#     - lastTransitionTime: "2024-08-22T19:34:02Z"
+#       status: "True"
+#       type: Ready
+#     observedGeneration: 1
+# - apiVersion: operand.run.cloud.google.com/v1alpha1
+#   kind: ActiveOperand
+#   metadata:
+#     creationTimestamp: "2024-08-22T15:18:02Z"
+#     generation: 1
+#     name: sha256-d52ebaffd5
+#     namespace: knative-serving
+#     resourceVersion: "11902984"
+#     uid: f96786a6-9f70-4504-811a-d1e4b9f3c5e5
+#   spec:
+#     live:
+#     - group: ""
+#       kind: ConfigMap
+#       name: metrics-collector-conf
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: ""
+#       kind: Service
+#       name: metrics-collector
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#     - group: apps
+#       kind: Deployment
+#       name: metrics-collector
+#       namespace: knative-serving
+#       resource: ""
+#       version: ""
+#   status:
+#     conditions:
+#     - lastTransitionTime: "2024-08-22T15:18:09Z"
+#       status: "True"
+#       type: OwnerRefInjected
+#     - lastTransitionTime: "2024-08-22T15:18:09Z"
+#       status: "True"
+#       type: Ready
+#     observedGeneration: 1
+# kind: List
+# metadata:
+#   resourceVersion: ""
