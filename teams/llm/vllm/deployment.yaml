@@ -12,13 +12,13 @@ spec:
     metadata:
       labels:
         app: gemma-server
-        ai.gke.io/model: gemma-3-4b-it
+        ai.gke.io/model: gemma-3-1b-it
         ai.gke.io/inference-server: vllm
         examples.ai.gke.io/source: user-guide
     spec:
       containers:
       - name: inference-server
-        image: us-docker.pkg.dev/vertex-ai/vertex-vision-model-garden-dockers/pytorch-vllm-serve:20250312_0916_RC01
+        image: us-docker.pkg.dev/vertex-ai/vertex-vision-model-garden-dockers/pytorch-vllm-serve:20250312_0916_RC01 #todo get latest
         resources:
           requests:
             cpu: "2"
@@ -40,7 +40,7 @@ spec:
         - --max-num-seqs=4
         env:
         - name: MODEL_ID
-          value: google/gemma-3-4b-it
+          value: google/gemma-3-1b-it
         - name: HUGGING_FACE_HUB_TOKEN
           valueFrom:
             secretKeyRef:
@@ -54,5 +54,6 @@ spec:
         emptyDir:
             medium: Memory
       nodeSelector:
-        cloud.google.com/gke-accelerator: nvidia-l4
+        cloud.google.com/gke-accelerator: nvidia-h100-80gb
+        cloud.google.com/gke-accelerator-count: "1"
         cloud.google.com/gke-gpu-driver-version: latest
